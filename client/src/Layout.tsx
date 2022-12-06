@@ -28,6 +28,13 @@ const Layout = () => {
         <>
             <HeaderWithErrorBoundary />
             <Breadcrumbs />
+            {/* <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Header />
+            </ErrorBoundary>
+
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Breadcrumbs />
+            </ErrorBoundary> */}
             <Outlet />
             <Footer />
             <SearchModel />
