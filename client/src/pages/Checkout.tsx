@@ -94,7 +94,7 @@ const Checkout = () => {
     const formik = useFormik({
         initialValues: formikinitialValues,
         validationSchema: validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values:any) => {
             dispatch(setBillingInfo({ ...values }))
         },
     });
@@ -105,7 +105,7 @@ const Checkout = () => {
         validationSchema: Yup.object().shape({
             paymentmethod: Yup.string().required('This field is required.'),
         }),
-        onSubmit: (values) => {
+        onSubmit: (values:any) => {
             dispatch(setBillingInfo({ ...values }))
         },
     })
