@@ -26,7 +26,7 @@ const ProductSection = () => {
         <PagePreloder />
     </>
     const handleAddToCart = (productId: number) => {
-        let prod = { id: productId, quantity: 1 }
+        const prod = { id: productId, quantity: 1 }
         dispatch(addToCart(prod));
     }
     const handleAddWishlist = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

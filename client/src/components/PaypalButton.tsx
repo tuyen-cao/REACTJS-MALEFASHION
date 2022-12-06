@@ -41,7 +41,7 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
              */
             return async(actions.order?.capture().then((details) => {
                 handleClick()
-                let localStoragepayment = localStorage.getItem("payment");
+                const localStoragepayment = localStorage.getItem("payment");
                 const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
                 localStorage.setItem("payment",JSON.stringify({...storedpayment, message: "PAYPAL: Payment succeeded!"}))
                 alert(

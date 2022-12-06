@@ -407,7 +407,7 @@ const Checkout = () => {
                                     {productsInCart &&
                                         <ul className="checkout__total__products">
                                             {products.map((p: any, index: number) => {
-                                                let formattedNumber = (index + 1).toLocaleString('en-US', {
+                                                const formattedNumber = (index + 1).toLocaleString('en-US', {
                                                     minimumIntegerDigits: 2,
                                                     useGrouping: false
                                                 })
@@ -472,7 +472,7 @@ const Checkout = () => {
                                                 currency={currency}
                                                 showSpinner={false}
                                                 handleClick={() => {
-                                                    
+
                                                     localStorage.setItem("payment", JSON.stringify({ products, discount, billingInfo }))
                                                     navigate("../completion")
 

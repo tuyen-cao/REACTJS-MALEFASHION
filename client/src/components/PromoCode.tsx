@@ -64,12 +64,9 @@ const PromoCode = (props: PromoCodeProps) => {
             })
     }, [isLoading, promo])
 
-    let validatedClass = ''
-    if (isError || errors.promocode?.type || promo?.data?.length === 0) validatedClass = 'was-validated'
-
     return (
         <>
-            <div className={validatedClass + ' cart__discount'}>
+            <div className={'was-validated cart__discount'}>
                 <h6>Discount codes</h6>
                 <form name="frmPromo" onSubmit={handleSubmit(onSubmit)}>
                     {hasRef

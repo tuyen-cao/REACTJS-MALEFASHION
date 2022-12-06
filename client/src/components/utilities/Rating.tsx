@@ -20,7 +20,7 @@ const Rating = (props: RatingProps) => {
     const renderRating = () => {
         let content = []
         for (let index = 0; index < 5; index++) {
-            let className = index < rate ? 'fa fa-star' : 'fa fa-star-o'    
+            const className = index < rate ? 'fa fa-star' : 'fa fa-star-o'    
             content.push(<i className={'fa ' + className} key={"star" + index} />)
         }
         return content

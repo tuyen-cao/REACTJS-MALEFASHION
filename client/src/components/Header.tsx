@@ -16,12 +16,8 @@ function Header() {
     const [urlParams, setUrlParams] = useState('')
 
     const getTotalItems = () => {
-        let total = 0, params = '';
-        productInCart.map((p: any) => {
-            total += p.quantity
-            params += `&id=${p.id}`
-        })
-        setTotalItems(total)
+        setTotalItems(productInCart?.reduce(
+            (preValue: number, prod: any) => preValue + prod.quantity, 0))
     }
     const { isLoading, data: productsInCart, isSuccess, error } = useProductsInCartData(useUrlIdParams(productInCart))
 
@@ -30,16 +26,15 @@ function Header() {
             const newPro = (({ id, price }) => ({ id, price }))(p)
             return { ...newPro, ...productInCart[i] }
         })
-        let total = prods?.reduce(
-            (preValue: number, prod: any) => preValue + prod.quantity * prod.price, 0)
-        setTotalAmounts(total)
+        setTotalAmounts(prods?.reduce(
+            (preValue: number, prod: any) => preValue + prod.quantity * prod.price, 0))
     }
 
 
     useEffect(() => {
-        let localStorageProductsInCart = localStorage.getItem("productsInCart");
-            let storedWishlists = typeof localStorageProductsInCart === "string"
-                ? JSON.parse(localStorageProductsInCart) : [];
+        const localStorageProductsInCart = localStorage.getItem("productsInCart");
+        const storedWishlists = typeof localStorageProductsInCart === "string"
+            ? JSON.parse(localStorageProductsInCart) : [];
         if (productInCart.length === 0 && storedWishlists.length > 0) {
             storedWishlists.map((product: any) => {
                 dispatch(addToCart(product))

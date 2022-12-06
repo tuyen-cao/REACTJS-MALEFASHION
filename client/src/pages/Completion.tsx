@@ -1,5 +1,5 @@
 import PagePreloder from 'components/PagePreloder';
-import {  useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
+import { useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
@@ -17,7 +17,7 @@ type productInCart = {
 const Completion = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  let localStoragepayment = localStorage.getItem("payment");
+  const localStoragepayment = localStorage.getItem("payment");
   const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
 
 
@@ -31,24 +31,24 @@ const Completion = () => {
   const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
 
   const mutateUpdatePaymentStatus = useUpdatePaymentStatusData()
-  
- // mutateUpdatePaymentStatus.mutate(order).then()
+
+  // mutateUpdatePaymentStatus.mutate(order).then()
   useEffect(() => {
     dispatch(resetCart())
     dispatch(addPromo(0))
-    let localStorageOrderID = localStorage.getItem("orderID");
+    const localStorageOrderID = localStorage.getItem("orderID");
     const storedorderID = localStorageOrderID ? JSON.parse(localStorageOrderID) : null;
-    
+
     mutateUpdatePaymentStatus.mutate({
       "id": storedorderID,
       "paymentStatus": storedpayment.message
     })
     //if ( localStoragepayment === null) navigate('/')
-     return (() => {
-       localStorage.removeItem("payment")
-       localStorage.removeItem("productsInCart")
-       localStorage.removeItem("orderID")
-     })
+    return (() => {
+      localStorage.removeItem("payment")
+      localStorage.removeItem("productsInCart")
+      localStorage.removeItem("orderID")
+    })
   }, [])
   if (isLoading) return <>
     <PagePreloder />
@@ -76,7 +76,7 @@ const Completion = () => {
                         <span>PRICE</span>
                       </li>
                       {products.map((p: any, index: number) => {
-                        let formattedNumber = (index + 1).toLocaleString('en-US', {
+                        const formattedNumber = (index + 1).toLocaleString('en-US', {
                           minimumIntegerDigits: 2,
                           useGrouping: false
                         })
