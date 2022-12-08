@@ -1,6 +1,6 @@
+import { INPUTTYPES } from 'constants/inputFields.constant';
 import { FieldHookConfig, useField  } from 'formik';
 import React from 'react'
-
 const defaultProps = {
     type: 'text',
     label: '',
@@ -32,6 +32,7 @@ type InputFieldProps = {
 } & typeof defaultProps
 
 const InputField = (props: InputFieldProps) => {
+    
     const { field,
         form,
         type,
@@ -45,7 +46,7 @@ const InputField = (props: InputFieldProps) => {
 
     return (
         <>
-            {type === "checkbox"
+            {type === INPUTTYPES.CHECKBOX
                 ?
                 <>
                     {label && <label htmlFor={name}>{label} {required && <span>*</span>}
@@ -56,7 +57,7 @@ const InputField = (props: InputFieldProps) => {
                         <span className="checkmark" />
                     </label>}
                 </>
-                : type === "radio"
+                : type === INPUTTYPES.RADIO
                     ? <>
                         {label && <label >{label} {required && <span>*</span>}
                             <input type={type}

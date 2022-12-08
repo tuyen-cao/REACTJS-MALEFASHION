@@ -7,6 +7,7 @@ import {
 import { useTypedSelector } from "store";
 import { getBillingInfo, getPromo } from "reducers/paymentReducer";
 import { selectedProducts } from "reducers/productsReducer";
+import { ERRORTYPES } from "constants/card.constatnt";
 
 
 
@@ -81,7 +82,7 @@ const PaymentForm = () => {
         // your `return_url`. For some payment methods like iDEAL, your customer will
         // be redirected to an intermediate site first to authorize the payment, then
         // redirected to the `return_url`.
-        if (error.type === "card_error" || error.type === "validation_error") {
+        if (error.type === ERRORTYPES.CARD_ERROR || error.type === ERRORTYPES.VALIDATION_ERROR) {
             setMessage(error.message);
         } else {
             setMessage("An unexpected error occurred.");

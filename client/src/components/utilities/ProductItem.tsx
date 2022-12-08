@@ -1,5 +1,6 @@
 import Rating from "./Rating"
 import styled from 'styled-components'
+import { PRODUCTTYPES } from "constants/product.constant"
 
 type ProductProps = {
     product: {
@@ -28,7 +29,7 @@ const ProductItem = (props: ProductProps) => {
                     className="product__item__pic set-bg"
                 >    <Thumbnail alt={product.title}
                     src={product.image} />
-                    {props.product.type !== "best sellers"
+                    {props.product.type !== PRODUCTTYPES.BEST_SELLERS
                         ? <span className="label">{product.type}</span>
                         : null}
                     <ul className="product__hover">
@@ -44,11 +45,6 @@ const ProductItem = (props: ProductProps) => {
                                 <span>Compare</span>
                             </a>
                         </li>
-                        {/* <li>
-                            <a href="#">
-                                <img src="img/icon/search.png" alt="" />
-                            </a>
-                        </li> */}
                     </ul>
                 </ThumbnailStyled>
                 <div className="product__item__text">

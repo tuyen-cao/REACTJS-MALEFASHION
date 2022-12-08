@@ -27,6 +27,7 @@
       "@store/*":["src/store/*"],
       "@hooks/*":["src/hooks/*"],
       "@utilities/*":["src/utilities/*"],
+      "@constants/*":["src/constants/*"],
     }
   },
   "include": [

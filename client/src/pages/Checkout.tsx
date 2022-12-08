@@ -19,6 +19,7 @@ import PaypalButton from 'components/PaypalButton'
 import { useCreateOrderData, useProductsInCartData } from 'hooks/useProductsInCartData'
 import { useUrlIdParams } from 'hooks/useUrlIdParams'
 import { selectedProducts } from 'reducers/productsReducer'
+import { PAYMENTMETHODS } from 'constants/card.constatnt'
 
 
 type product = {
@@ -118,7 +119,9 @@ const Checkout = () => {
         formik.handleSubmit()
         formikPaymentMethod.handleSubmit()
 
-        formik.isValid && formikPaymentMethod.isValid && formikPaymentMethod.values.paymentmethod === "Credit card" && navigate("../payment")
+        formik.isValid
+            && formikPaymentMethod.isValid
+            && formikPaymentMethod.values.paymentmethod === PAYMENTMETHODS.CREDIT_CARD && navigate("../payment")
 
     }
     useEffect(() => {
@@ -136,9 +139,9 @@ const Checkout = () => {
             mutateOrderData.mutate(orderInfo)
         }
 
-        if (formik.isValid && formik.dirty && formikPaymentMethod.values.paymentmethod === "Paypal")
+        if (formik.isValid && formik.dirty && formikPaymentMethod.values.paymentmethod === PAYMENTMETHODS.PAYPAL)
             setEnablePayPalButton(true)
-        if (formikPaymentMethod.values.paymentmethod === "Credit card")
+        if (formikPaymentMethod.values.paymentmethod === PAYMENTMETHODS.CREDIT_CARD)
             setEnablePayPalButton(false)
     }, [formikPaymentMethod.values.paymentmethod, formik.isValid])
 
