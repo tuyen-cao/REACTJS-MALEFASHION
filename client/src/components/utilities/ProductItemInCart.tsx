@@ -20,7 +20,6 @@ type ProductProps = {
 }
 
 const ProductItemInCart = (props: any) => {
-    console.log("Product item")
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     const product = props.product

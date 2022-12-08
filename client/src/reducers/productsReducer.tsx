@@ -65,7 +65,6 @@ export const productsSlice = createSlice({
                 return product
             })
             state.productsInCart = newArr;
-            console.log(state.productsInCart)
             localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
         },
         setAmount(state: ProductsState, action: PayloadAction<ProductId>) {

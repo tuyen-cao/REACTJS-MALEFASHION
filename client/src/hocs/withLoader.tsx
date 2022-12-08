@@ -3,7 +3,6 @@ import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export default function withLoader(Element:any, url:string) {
   return (props:any) => {
-    console.log('aaaaaaa');
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
