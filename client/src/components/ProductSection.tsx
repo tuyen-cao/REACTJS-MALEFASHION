@@ -4,23 +4,12 @@ import PagePreloder from "./PagePreloder"
 import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
 import ProductItem from './utilities/ProductItem'
-import { request } from 'utilities/axios-utils'
+import { GetProduct } from 'services/product.service'
 
 const ProductSection = () => {
     const dispatch = useDispatch()
 
-    const { isLoading, data } = useQuery(
-        'products',
-        () => { return request({ url: '/products?_expand=productType&productTypeId_ne=0' }) },
-        {
-            select: (data) => {
-                const newProducts = data.data.map((product: any) => {
-                    return { ...product, type: product.productType.type }
-                })
-                return newProducts
-            }
-        }
-    )
+    const { isLoading, data } = GetProduct()
 
     if (isLoading) return <>
         <PagePreloder />
