@@ -5,12 +5,12 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import './App.scss';
 /* <!-- Css Styles --> */
 
-import "./css/font-awesome.min.css"
+/* import "./css/font-awesome.min.css"
 import "./css/elegant-icons.css"
 import "./css/magnific-popup.css"
 import "./css/nice-select.css"
 import "./css/owl.carousel.min.css"
-import "./css/slicknav.min.css"
+import "./css/slicknav.min.css" */
 
 import './sass/style.scss'
 
