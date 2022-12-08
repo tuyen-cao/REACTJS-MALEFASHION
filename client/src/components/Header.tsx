@@ -1,52 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react"
+import React from "react"
 
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { addToCart, selectedProducts } from "reducers/productsReducer"
-import { useTypedSelector } from "store"
-import { useProductsInCartData } from "hooks/useProductsInCartData"
-import { useUrlIdParams } from "hooks/useUrlIdParams"
+import ShoppingCartLink from "./utilities/ShoppingCartLink"
 
 function Header() {
-    const dispatch = useDispatch()
-    const [totalItems, setTotalItems] = useState(0)
-    const [totalAmounts, setTotalAmounts] = useState(0)
-    const productInCart = useTypedSelector(selectedProducts);
-    const [urlParams, setUrlParams] = useState('')
 
-    const getTotalItems = () => {
-        setTotalItems(productInCart?.reduce(
-            (preValue: number, prod: any) => preValue + prod.quantity, 0))
-    }
-    const { isLoading, data: productsInCart, isSuccess, error } = useProductsInCartData(useUrlIdParams(productInCart))
-
-    const calculateTotalAmounts = () => {
-        const prods = productsInCart?.map((p: any, i: number) => {
-            const newPro = (({ id, price }) => ({ id, price }))(p)
-            return { ...newPro, ...productInCart[i] }
-        })
-        setTotalAmounts(prods?.reduce(
-            (preValue: number, prod: any) => preValue + prod.quantity * prod.price, 0))
-    }
-
-
-    useEffect(() => {
-        const localStorageProductsInCart = localStorage.getItem("productsInCart");
-        const storedWishlists = typeof localStorageProductsInCart === "string"
-            ? JSON.parse(localStorageProductsInCart) : [];
-        if (productInCart.length === 0 && storedWishlists.length > 0) {
-            storedWishlists.map((product: any) => {
-                dispatch(addToCart(product))
-            })
-        }
-    }, [])
-
-    useEffect(() => {
-        getTotalItems()
-        calculateTotalAmounts()
-
-    }, [isLoading, productsInCart, productInCart])
     return (
         <>
 
@@ -75,13 +34,7 @@ function Header() {
                     <a href="#">
                         <img src="/img/icon/heart.png" alt="" />
                     </a>
-                    <Link to='shop/shopping-cart'>
-                        <img src="/img/icon/cart.png" alt="" />
-                        {totalItems > 0 ? <BadgeStyled className="badge rounded-pill bg-danger">{totalItems}</BadgeStyled> : null}
-
-                    </Link>
-
-                    <div className="price">{totalAmounts?.toFixed(2)}</div>
+                    <ShoppingCartLink />
                 </div>
                 <div id="mobile-menu-wrap" />
                 <div className="offcanvas__text">
@@ -174,12 +127,8 @@ function Header() {
                                 <a href="#">
                                     <img src="/img/icon/heart.png" alt="" />
                                 </a>
-                                <Link to='shop/shopping-cart'>
-                                    <img src="/img/icon/cart.png" alt="" />
-                                    {totalItems > 0 ? <BadgeStyled className="badge rounded-pill bg-danger">{totalItems}</BadgeStyled> : null}
 
-                                </Link>
-                                <div className="price">{totalAmounts?.toFixed(2)}</div>
+                                <ShoppingCartLink />
                             </div>
                         </div>
                     </div>
