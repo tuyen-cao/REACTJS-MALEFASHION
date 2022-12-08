@@ -16,14 +16,19 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     const { currency, showSpinner, handleClick } = Props
 
+    let localStorageOrder = localStorage.getItem("orderID");
+    const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : null;
+    const amount = storedorder.discountedTotal > 0 ? storedorder.total - storedorder.discountedTotal :  storedorder.total
+   
     const payPalButtonsComponentOptions: PayPalButtonsComponentOptions = {
         style: { layout: "vertical" },
         createOrder(data, actions) {
+           
             return actions.order.create({
                 purchase_units: [
                     {
                         amount: {
-                            value: "0.01"
+                            value: amount.toFixed(2).toString()
                         }
                     }
                 ]
@@ -41,7 +46,7 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
              */
             return async(actions.order?.capture().then((details) => {
                 handleClick()
-                const localStoragepayment = localStorage.getItem("payment");
+                let localStoragepayment = localStorage.getItem("payment");
                 const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
                 localStorage.setItem("payment",JSON.stringify({...storedpayment, message: "PAYPAL: Payment succeeded!"}))
                 alert(
@@ -66,4 +71,3 @@ export default PaypalButton
 function async(arg0: Promise<void> | undefined): Promise<void> {
     throw new Error('Function not implemented.');
 }
-

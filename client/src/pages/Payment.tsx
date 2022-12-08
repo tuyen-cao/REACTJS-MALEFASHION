@@ -13,14 +13,15 @@ const stripePromise = loadStripe(PUBLIC_KEY)
 
 const Payment = () => {
     const [clientSecret, setClientSecret] = useState("");
-
+    let localStorageOrder = localStorage.getItem("orderID");
+    const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : null;
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         // fetch("/create-payment-intent", {
         fetch("http://localhost:4000/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ currency: 'usd', amount: 700 }),
+            body: JSON.stringify({ currency: 'usd', amount: (storedorder.total - storedorder.discountedTotal)*100 }),
         })
             .then((res) => res.json())
             .then((data) => {

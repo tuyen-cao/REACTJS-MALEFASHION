@@ -59,20 +59,19 @@ export const useProductsInCartData = (urlParams: string, onSuccess = () => { }, 
 
 export const useCreateOrderData = () => {
     const queryClient = useQueryClient()
- 
-    return useMutation( {
+
+    return useMutation({
         mutationFn: addOrder,
         onSuccess: async (data, context) => {
-            localStorage.setItem("orderID", data.data.id)
+            localStorage.setItem("orderID", JSON.stringify(data.data))
         },
         onError: async (data, context) => {
             console.log(data);
-        } 
+        }
     })
 }
 
 export const useUpdatePaymentStatusData = () => {
     return useMutation(updatePaymentStatus)
 }
-
 

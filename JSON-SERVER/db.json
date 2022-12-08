@@ -386,6 +386,21 @@
       "totalQuantity": 2,
       "id": 3,
       "paymentStatus": "PAYPAL: Payment succeeded!"
+    },
+    {
+      "products": [
+        {
+          "productId": 2
+        },
+        {
+          "productId": 5
+        }
+      ],
+      "total": 717.3,
+      "discountedTotal": 0,
+      "totalQuantity": 2,
+      "id": 4,
+      "paymentStatus": null
     }
   ]
 }

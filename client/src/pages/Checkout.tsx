@@ -94,7 +94,7 @@ const Checkout = () => {
     const formik = useFormik({
         initialValues: formikinitialValues,
         validationSchema: validationSchema,
-        onSubmit: (values:any) => {
+        onSubmit: (values: any) => {
             dispatch(setBillingInfo({ ...values }))
         },
     });
@@ -105,7 +105,7 @@ const Checkout = () => {
         validationSchema: Yup.object().shape({
             paymentmethod: Yup.string().required('This field is required.'),
         }),
-        onSubmit: (values:any) => {
+        onSubmit: (values: any) => {
             dispatch(setBillingInfo({ ...values }))
         },
     })
@@ -122,7 +122,6 @@ const Checkout = () => {
 
     }
     useEffect(() => {
-
         setOrder({
             "products": productInCart.map(p => {
                 return { "productId": p.id }
@@ -131,7 +130,7 @@ const Checkout = () => {
             "discountedTotal": Number((calculateSubTotal() * discount / 100).toFixed(2)),
             "totalQuantity": Number(products?.reduce((preValue: number, product) => preValue + product.quantity, 0))
         })
-    }, [])
+    }, [discount, productInCart])
     useEffect(() => {
         if (formik.isValid && formikPaymentMethod.isValid && formik.dirty && formikPaymentMethod.dirty) {
             mutateOrderData.mutate(orderInfo)
@@ -407,7 +406,7 @@ const Checkout = () => {
                                     {productsInCart &&
                                         <ul className="checkout__total__products">
                                             {products.map((p: any, index: number) => {
-                                                const formattedNumber = (index + 1).toLocaleString('en-US', {
+                                                let formattedNumber = (index + 1).toLocaleString('en-US', {
                                                     minimumIntegerDigits: 2,
                                                     useGrouping: false
                                                 })
