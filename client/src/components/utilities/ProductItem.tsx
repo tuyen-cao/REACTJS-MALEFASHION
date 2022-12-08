@@ -1,6 +1,7 @@
 import Rating from "../Rating"
 import styled from 'styled-components'
 import { PRODUCTTYPES } from "constants/product.constant"
+import { id } from "postcss-selector-parser"
 
 type ProductProps = {
     product: {
@@ -16,12 +17,15 @@ type ProductProps = {
             count: number
         },
     },
-    handleAddToCart: (clickItem:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    handleAddToCart: (productId: number) => void,
     handleAddWishlist: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 }
 const ProductItem = (props: ProductProps) => {
     const rating = props.product.rating,
         product = props.product
+    const handleAddToCart = () => {
+        props.handleAddToCart(product.id)
+    }
     return (
         <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
             <ProductItemStyled className="product__item">
@@ -50,7 +54,7 @@ const ProductItem = (props: ProductProps) => {
                 <div className="product__item__text">
                     <h6>{product.title}</h6>
                     <AddToCartStyled className="add-cart"
-                        onClick={props.handleAddToCart}>
+                        onClick={handleAddToCart}>
                         + Add To Cart
                     </AddToCartStyled>
                     <Rating rating={rating} />
