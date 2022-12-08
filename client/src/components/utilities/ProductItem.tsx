@@ -1,4 +1,4 @@
-import Rating from "./Rating"
+import Rating from "../Rating"
 import styled from 'styled-components'
 import { PRODUCTTYPES } from "constants/product.constant"
 
