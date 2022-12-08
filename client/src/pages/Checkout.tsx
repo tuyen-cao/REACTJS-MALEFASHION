@@ -335,7 +335,7 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="checkout__input__checkbox">
+                                    <div className="checkout__input-checkbox">
                                         <label>Create an account?
                                             <input
                                                 name="acc"
@@ -369,7 +369,7 @@ const Checkout = () => {
                                         : null
                                     }
 
-                                    <div className="checkout__input__checkbox">
+                                    <div className="checkout__input-checkbox">
                                         <label>Note about your order, e.g, special noe for delivery
                                             <input
                                                 name="diffAcc"
@@ -402,12 +402,12 @@ const Checkout = () => {
                             <div className="col-lg-4 col-md-6">
                                 <div className="checkout__order">
                                     <h4 className="order__title">Your order</h4>
-                                    <div className="checkout__order__products">
+                                    <div className="checkout-order__products">
                                         Product <span>Total</span>
                                     </div>
 
                                     {productsInCart &&
-                                        <ul className="checkout__total__products">
+                                        <ul className="checkout-order__total-products">
                                             {products.map((p: any, index: number) => {
                                                 let formattedNumber = (index + 1).toLocaleString('en-US', {
                                                     minimumIntegerDigits: 2,
@@ -425,7 +425,7 @@ const Checkout = () => {
                                         </ul>
                                     }
 
-                                    <ul className="checkout__total__all">
+                                    <ul className="checkout-order__total-all">
                                         <li>
                                             Subtotal <span>$ {calculateSubTotal().toFixed(2)} </span>
                                         </li>
@@ -439,7 +439,7 @@ const Checkout = () => {
                                         eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     </p>
                                     <form name="frmPaymentMethod" className="was-validated">
-                                        <div className="checkout__input__checkbox">
+                                        <div className="checkout__input-checkbox">
                                             <label>Credit Card
                                                 <input
                                                     name="paymentmethod"
@@ -450,7 +450,7 @@ const Checkout = () => {
                                                     onChange={formikPaymentMethod.handleChange} />
                                                 <span className="checkmark"></span></label>
                                         </div>
-                                        <div className="checkout__input__checkbox">
+                                        <div className="checkout__input-checkbox">
                                             <label>Paypal
                                                 <input
                                                     name="paymentmethod"

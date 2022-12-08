@@ -58,7 +58,7 @@
   }
 }
 
-.checkout__input__checkbox {
+.checkout__input-checkbox {
 
   label {
     font-size: 15px;
@@ -146,7 +146,7 @@
   }
 }
 
-.checkout__order__products {
+.checkout-order__products {
   font-size: 16px;
   color: $heading-color;
   overflow: hidden;
@@ -157,7 +157,7 @@
   }
 }
 
-.checkout__total__products {
+.checkout-order__total-products {
   margin-bottom: 20px;
 
   li {
@@ -191,7 +191,7 @@
 
 }
 
-.checkout__total__all {
+.checkout-order__total-all {
   border-top: 1px solid #d7d7d7;
   border-bottom: 1px solid #d7d7d7;
   padding: 15px 0;

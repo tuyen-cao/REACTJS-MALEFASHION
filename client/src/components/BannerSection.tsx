@@ -8,10 +8,10 @@ const BannerSection = () => {
                     <div className="row">
                         <div className="col-lg-7 offset-lg-4">
                             <div className="banner__item">
-                                <div className="banner__item__pic">
+                                <div className="banner-item__pic">
                                     <img src="img/banner/banner-1.jpg" alt="" />
                                 </div>
-                                <div className="banner__item__text">
+                                <div className="banner-item__text">
                                     <h2>Clothing Collections 2030</h2>
                                     <a href="#">Shop now</a>
                                 </div>

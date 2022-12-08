@@ -10,7 +10,7 @@
     padding: 10px 0;
 }
 
-.header__top__left {
+.header-top__left {
 
     p {
         color: $white-color;
@@ -18,11 +18,11 @@
     }
 }
 
-.header__top__right {
+.header-top__right {
     text-align: right;
 }
 
-.header__top__links {
+.header-top__links {
     display: inline-block;
     margin-right: 25px;
 
@@ -40,7 +40,7 @@
     }
 }
 
-.header__top__hover {
+.header-top__hover {
     display: inline-block;
     position: relative;
 

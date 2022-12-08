@@ -17,10 +17,10 @@ const LatestSection = () => {
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="blog__item">
                                 <div
-                                    className="blog__item__pic set-bg"
+                                    className="blog-item__pic set-bg"
                                     data-setbg="img/blog/blog-1.jpg"
                                 />
-                                <div className="blog__item__text">
+                                <div className="blog-item__text">
                                     <span>
                                         <img src="img/icon/calendar.png" alt="" /> 16 February 2020
                                     </span>
@@ -32,10 +32,10 @@ const LatestSection = () => {
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="blog__item">
                                 <div
-                                    className="blog__item__pic set-bg"
+                                    className="blog-item__pic set-bg"
                                     data-setbg="img/blog/blog-2.jpg"
                                 />
-                                <div className="blog__item__text">
+                                <div className="blog-item__text">
                                     <span>
                                         <img src="img/icon/calendar.png" alt="" /> 21 February 2020
                                     </span>
@@ -47,10 +47,10 @@ const LatestSection = () => {
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="blog__item">
                                 <div
-                                    className="blog__item__pic set-bg"
+                                    className="blog-item__pic set-bg"
                                     data-setbg="img/blog/blog-3.jpg"
                                 />
-                                <div className="blog__item__text">
+                                <div className="blog-item__text">
                                     <span>
                                         <img src="img/icon/calendar.png" alt="" /> 28 February 2020
                                     </span>

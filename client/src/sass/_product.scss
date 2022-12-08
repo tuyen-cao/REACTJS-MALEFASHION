@@ -35,7 +35,7 @@
 
   &.sale {
 
-    .product__item__pic {
+    .product-item__pic {
 
       .label {
         color: $white-color;
@@ -43,7 +43,7 @@
       }
     }
 
-    .product__item__text {
+    .product-item__text {
 
       .rating {
 
@@ -60,7 +60,7 @@
 
   &:hover {
 
-    .product__item__pic {
+    .product-item__pic {
 
       .product__hover {
         right: 20px;
@@ -68,7 +68,7 @@
       }
     }
 
-    .product__item__text {
+    .product-item__text {
 
       a {
         top: 22px;
@@ -80,14 +80,14 @@
         opacity: 0;
       }
 
-      .product__color__select {
+      .product__color-select {
         opacity: 1;
       }
     }
   }
 }
 
-.product__item__pic {
+.product-item__pic {
     height: 260px;
     position: relative;
     background-position: center center;
@@ -161,7 +161,7 @@
     }
 }
 
-.product__item__text {
+.product-item__text {
   padding-top: 25px;
   position: relative;
 
@@ -200,7 +200,7 @@
     font-weight: 700;
   }
 
-  .product__color__select {
+  .product__color-select {
     position: absolute;
     right: 0;
     bottom: 0;

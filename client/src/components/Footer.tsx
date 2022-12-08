@@ -80,7 +80,7 @@ function Footer() {
                     </div>
                     <div className="row">
                         <div className="col-lg-12 text-center">
-                            <div className="footer__copyright__text">
+                            <div className="footer__copyright-text">
                                 {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
                                 <p>
                                     Copyright © 2020 All rights reserved | This template is made with{" "}

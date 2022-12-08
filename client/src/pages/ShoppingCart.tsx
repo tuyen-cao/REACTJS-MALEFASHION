@@ -66,7 +66,7 @@ const ShoppingCart = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
-                            <div className="shopping__cart__table">
+                            <div className="shopping-cart__table">
                                 <table>
                                     <thead>
                                         <tr>

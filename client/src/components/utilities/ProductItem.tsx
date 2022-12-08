@@ -30,7 +30,7 @@ const ProductItem = (props: ProductProps) => {
         <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
             <ProductItemStyled className="product__item">
                 <ThumbnailStyled
-                    className="product__item__pic set-bg"
+                    className="product-item__pic set-bg"
                 >    <Thumbnail alt={product.title}
                     src={product.image} />
                     {props.product.type !== PRODUCTTYPES.BEST_SELLERS
@@ -51,7 +51,7 @@ const ProductItem = (props: ProductProps) => {
                         </li>
                     </ul>
                 </ThumbnailStyled>
-                <div className="product__item__text">
+                <div className="product-item__text">
                     <h6>{product.title}</h6>
                     <AddToCartStyled className="add-cart"
                         onClick={handleAddToCart}>
@@ -59,7 +59,7 @@ const ProductItem = (props: ProductProps) => {
                     </AddToCartStyled>
                     <Rating rating={rating} />
                     <h5>${product.price}</h5>
-                    <div className="product__color__select">
+                    <div className="product__color-select">
                         <label htmlFor="pc-1">
                             <input type="radio" id="pc-1" />
                         </label>

@@ -11,7 +11,7 @@
 
   &:hover {
 
-    .banner__item__text {
+    .banner-item__text {
 
       a {
 
@@ -26,11 +26,11 @@
   &.banner__item--middle {
     margin-top: -75px;
 
-    .banner__item__pic {
+    .banner-item__pic {
       float: none;
     }
 
-    .banner__item__text {
+    .banner-item__text {
       position: relative;
       top: 0;
       left: 0;
@@ -44,11 +44,11 @@
   }
 }
 
-.banner__item__pic {
+.banner-item__pic {
   float: right;
 }
 
-.banner__item__text {
+.banner-item__text {
   max-width: 300px;
   position: absolute;
   left: 0;
@@ -122,7 +122,7 @@
   }
 }
 
-.categories__hot__deal {
+.categories__hot-deal {
   position: relative;
   z-index: 5;
 
@@ -131,7 +131,7 @@
   }
 }
 
-.hot__deal__sticker {
+.hot-deal__sticker {
   height: 100px;
   width: 100px;
   background: $heading-color;
@@ -156,7 +156,7 @@
   }
 }
 
-.categories__deal__countdown {
+.categories__deal-countdown {
 
   span {
     color: $primary-color;
@@ -175,7 +175,7 @@
     margin-bottom: 25px;
   }
 
-  .categories__deal__countdown__timer {
+  .categories-deal-countdown__timer {
     margin-bottom: 20px;
     overflow: hidden;
     margin-left: -30px;
@@ -225,7 +225,7 @@
   padding-bottom: 0;
 }
 
-.instagram__pic__item {
+.instagram-pic__item {
   width: 33.33%;
   float: left;
   height: 261px;

@@ -69,7 +69,7 @@ const Completion = () => {
                   <h4 className="order__title">ORDER INFO<br />
                     ORDER NO.2530080002211201317-4885945</h4>
                   {productsInCart && <>
-                    <ul className="checkout__total__products">
+                    <ul className="checkout-order__total-products">
                       <li>
                         <span>NO</span>
                         <span>PRODUCT NAME </span><span>QTY</span>
