@@ -1,4 +1,4 @@
-import ProductSection from 'components/ProductSection'
+import ProductSection from 'components/ProductSectionMixup'
 import React from 'react'
 
 const Homepage = () => {

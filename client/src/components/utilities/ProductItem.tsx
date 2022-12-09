@@ -18,7 +18,7 @@ type ProductProps = {
         },
     },
     handleAddToCart: (productId: number) => void,
-    handleAddWishlist: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    handleAddWishlist: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 const ProductItem = (props: ProductProps) => {
     const rating = props.product.rating,
@@ -27,8 +27,8 @@ const ProductItem = (props: ProductProps) => {
         props.handleAddToCart(product.id)
     }
     return (
-        <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
-            <ProductItemStyled className="product__item">
+        <>
+        <ProductItemStyled className="product__item">
                 <ThumbnailStyled
                     className="product-item__pic set-bg"
                 >    <Thumbnail alt={product.title}
@@ -72,7 +72,10 @@ const ProductItem = (props: ProductProps) => {
                     </div>
                 </div>
             </ProductItemStyled>
-        </div>
+        </>
+       /*  <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
+            
+        </div> */
     )
 }
 
