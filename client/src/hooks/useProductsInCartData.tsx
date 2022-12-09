@@ -1,42 +1,9 @@
 
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { request } from 'utilities/axios-utils'
-import { useId } from 'react'
+import { addOrder, updatePaymentStatus } from 'services/payment.service';
+import { fetchProduct } from 'services/product.service';
 
-type product = {
-    productId: number
-}
-type order = {
-    id?: number;
-    products?: product[],
-    total?: number,
-    discountedTotal?: number,
-    totalQuantity?: number,
-    paymentStatus?: string
-};
 
-const fetchProduct = (urlparams: string) => {
-    if (urlparams !== '')
-        return request({ url: `/products?${urlparams}` })
-
-}
-
-const addOrder = (order: order) => {
-    return request({
-        url: `/orders`,
-        method: 'post',
-        data: order
-    })
-}
-const updatePaymentStatus = (order: order) => {
-    return request({
-        url: `/orders/${order.id}`,
-        method: 'PATCH',
-        data: {
-            paymentStatus: order.paymentStatus
-        }
-    })
-}
 export const useProductsInCartData = (urlParams: string, onSuccess = () => { }, onError = () => { }) => {
     const queryClient = useQueryClient()
     return useQuery(

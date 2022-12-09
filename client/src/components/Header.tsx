@@ -1,11 +1,24 @@
-import React from "react"
-
+import React, { useEffect } from "react"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ShoppingCartLink from "./utilities/ShoppingCartLink"
+import { useTypedSelector } from "store";
+import { addToCart, selectedProducts } from "reducers/productsReducer";
+import { useDispatch } from "react-redux";
 
 function Header() {
-
+    const dispatch = useDispatch()
+    const productInCart = useTypedSelector(selectedProducts);
+    useEffect(() => {
+        const localStorageProductsInCart = localStorage.getItem("productsInCart");
+        const storedProductsInCart = typeof localStorageProductsInCart === "string"
+            ? JSON.parse(localStorageProductsInCart) : [];
+        if (productInCart.length === 0 && storedProductsInCart.length > 0) {
+            storedProductsInCart.map((product: any) => {
+                dispatch(addToCart(product))
+            })
+        }
+    }, []) 
     return (
         <>
 

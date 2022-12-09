@@ -279,6 +279,24 @@
         "rate": 3.6,
         "count": 145
       }
+    },
+    {
+      "id": 21
+    },
+    {
+      "id": 22
+    },
+    {
+      "id": 23
+    },
+    {
+      "id": 24
+    },
+    {
+      "id": 25
+    },
+    {
+      "id": 26
     }
   ],
   "productTypes": [
@@ -401,6 +419,20 @@
       "totalQuantity": 2,
       "id": 4,
       "paymentStatus": null
+    },
+    {
+      "products": [
+        {
+          "productId": 2
+        },
+        {
+          "productId": 5
+        }
+      ],
+      "total": 873.4,
+      "discountedTotal": 0,
+      "totalQuantity": 9,
+      "id": 5
     }
   ]
 }

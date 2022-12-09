@@ -22,18 +22,7 @@ const ShoppingCartLink = () => {
         setTotalAmounts(prods?.reduce(
             (preValue: number, prod: any) => preValue + prod.quantity * prod.price, 0))
     }
-    
-    useEffect(() => {
-        const localStorageProductsInCart = localStorage.getItem("productsInCart");
-        const storedProductsInCart = typeof localStorageProductsInCart === "string"
-            ? JSON.parse(localStorageProductsInCart) : [];
-        if (productInCart.length === 0 && storedProductsInCart.length > 0) {
-            storedProductsInCart.map((product: any) => {
-                dispatch(addToCart(product))
-            })
-        }
-    }, [])
-
+   
     useEffect(() => {
         calculateTotalAmounts()
     }, [isLoading, productsInCart, productInCart])

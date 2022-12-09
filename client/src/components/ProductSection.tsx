@@ -4,8 +4,9 @@ import PagePreloder from "./PagePreloder"
 import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
 import ProductItem from './utilities/ProductItem'
-import { GetProduct } from 'services/product.service'
+import { fetchProduct } from 'services/product.service'
 import { useCallback } from 'react';
+import { URLPARAMS } from 'constants/product.constant'
 
 const ProductSection = () => {
     const dispatch = useDispatch()
@@ -14,8 +15,18 @@ const ProductSection = () => {
         dispatch(addToCart({ id: productId, quantity: 1 }));
     },[])
 
-    const { isLoading, data } = GetProduct()
-
+    const { isLoading, data } = useQuery(
+        ['products'],
+        () => fetchProduct(URLPARAMS.ALLPRODUCTTYPES),
+        {
+            select: (data) => {
+                const newProducts = data.data.map((product: any) => {
+                    return { ...product, type: product.productType.type }
+                })
+                return newProducts
+            }
+        }
+    )
     if (isLoading) return <>
         <PagePreloder />
     </>
