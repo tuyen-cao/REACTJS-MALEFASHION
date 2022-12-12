@@ -1,12 +1,9 @@
 
-// Import the `RootState` type:
 import { RootState } from "../store";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type ProductId = number;
-
 type productInCart = {
-    id: ProductId;
+    id: number;
     quantity: number
 };
 
@@ -43,10 +40,10 @@ export const productsSlice = createSlice({
             }
             localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
         },
-        toogleWishList(state: ProductsState, action: PayloadAction<ProductId>) {
-            // console.log(action.payload)
+        toogleWishList(state: ProductsState, action: PayloadAction<number>) {
+
         },
-        removeItemCart(state: ProductsState, action: PayloadAction<ProductId>) {
+        removeItemCart(state: ProductsState, action: PayloadAction<number>) {
             state.productsInCart = state.productsInCart.filter(p => {
                 return p.id !== action.payload
             })
@@ -67,7 +64,7 @@ export const productsSlice = createSlice({
             state.productsInCart = newArr;
             localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
         },
-        setAmount(state: ProductsState, action: PayloadAction<ProductId>) {
+        setAmount(state: ProductsState, action: PayloadAction<number>) {
             state.amount = action.payload
         },
         resetCart(state: ProductsState) {

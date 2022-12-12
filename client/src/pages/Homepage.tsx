@@ -4,12 +4,7 @@ import React from 'react'
 const Homepage = () => {
     return (
         <>
-            {/* <HeroSection />
-            <BannerSection />*/}
             <ProductSection/>
-            {/* <CategoriesSection />
-            <InstagramSection />
-            <LatestSection/> */}
         </>
     )
 }

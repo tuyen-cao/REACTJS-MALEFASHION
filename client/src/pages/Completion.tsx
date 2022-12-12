@@ -1,5 +1,5 @@
 import PagePreloder from 'components/PagePreloder';
-import {  useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
+import { useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
@@ -20,10 +20,7 @@ const Completion = () => {
   let localStoragepayment = localStorage.getItem("payment");
   const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
 
-
-
   const productInCart: productInCart[] = storedpayment.products
-
 
   const { isLoading,
     data: productsInCart, } = useProductsInCartData(useUrlIdParams(productInCart))
@@ -31,24 +28,22 @@ const Completion = () => {
   const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
 
   const mutateUpdatePaymentStatus = useUpdatePaymentStatusData()
-  
- // mutateUpdatePaymentStatus.mutate(order).then()
+
   useEffect(() => {
     dispatch(resetCart())
     dispatch(addPromo(0))
     let localStorageOrder = localStorage.getItem("orderID");
     const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : null;
-    
+
     mutateUpdatePaymentStatus.mutate({
       "id": storedorder.id,
       "paymentStatus": storedpayment.message
     })
-    //if ( localStoragepayment === null) navigate('/')
-     return (() => {
-       localStorage.removeItem("payment")
-       localStorage.removeItem("productsInCart")
-       localStorage.removeItem("orderID")
-     })
+    return (() => {
+      localStorage.removeItem("payment")
+      localStorage.removeItem("productsInCart")
+      localStorage.removeItem("orderID")
+    })
   }, [])
   if (isLoading) return <>
     <PagePreloder />
