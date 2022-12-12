@@ -12,7 +12,7 @@ const ProductSection = () => {
 
     const handleAddToCart = useCallback((productId: number) => {
         dispatch(addToCart({ id: productId, quantity: 1 }));
-    },[])
+    }, [])
 
     const { isLoading, data } = GetProduct()
 
@@ -43,11 +43,13 @@ const ProductSection = () => {
                     </div>
                     <div className="row product__filter" >
                         {data?.map((product: any) => {
-                            return <ProductItem
-                                key={"product-" + product.id}
-                                product={product}
-                                handleAddToCart={handleAddToCart}
-                                handleAddWishlist={handleAddWishlist} />
+                            return <div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
+
+                                <ProductItem
+                                    key={"product-" + product.id}
+                                    product={product}
+                                    handleAddToCart={handleAddToCart}
+                                    handleAddWishlist={handleAddWishlist} /></div>
                         })}
                     </div>
                 </div>

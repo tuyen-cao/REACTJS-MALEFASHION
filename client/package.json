@@ -64,6 +64,7 @@
     ]
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.6"
+    "@types/bootstrap": "^5.2.6",
+    "mixitup": "^3.3.1"
   }
 }
