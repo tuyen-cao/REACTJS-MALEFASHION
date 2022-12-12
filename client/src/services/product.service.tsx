@@ -1,3 +1,4 @@
+import { REQUEST_METHOD } from 'constants/methodRequest.constant'
 import { useQuery } from 'react-query'
 import { request } from 'utilities/axios-utils'
 
@@ -7,7 +8,7 @@ export const fetchProduct = (urlparams: string) => {
     if (urlparams !== '')
         return request({
             url: url + `?${urlparams}`,
-            method: 'get',
+            method: REQUEST_METHOD.GET,
             headers: {
                 'Test-Header': 'test-value'
             }

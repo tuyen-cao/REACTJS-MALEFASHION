@@ -4,6 +4,7 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { useQuery, useQueryClient } from 'react-query'
 import { addPromo } from '../reducers/paymentReducer';
+import { fetchPromocodes } from 'services/payment.service';
 
 type FormValues = {
     promocode: string,
@@ -20,9 +21,7 @@ type PromoCodeProps = {
 
 const PromoCode = (props: PromoCodeProps) => {
     const { hasRef } = props
-    const fetchPromocodes = (promocode: string) => {
-        return request({ url: `/promoCodes?code=${promocode}` })
-    }
+   
 
     const { control, register, handleSubmit, watch, formState: { errors } } = useForm<FormValues>();
     const promoCodeRef = useRef<HTMLInputElement | null>(null);

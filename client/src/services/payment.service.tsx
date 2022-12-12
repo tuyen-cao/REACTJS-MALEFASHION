@@ -1,3 +1,5 @@
+import { API_CONSTANTS } from 'constants/api.constant'
+import { REQUEST_METHOD } from 'constants/methodRequest.constant'
 import { useQuery } from 'react-query'
 import { request } from 'utilities/axios-utils'
 
@@ -18,18 +20,28 @@ type order = {
 
 export const addOrder = (order: order) => {
     return request({
-        url: url,
-        method: 'post',
+        url: API_CONSTANTS.API_ADD_ODER,
+        method: REQUEST_METHOD.POST,
         data: order
     })
 }
 
 export const updatePaymentStatus = (order: order) => {
+    const orderId: string = order.id !== undefined ? order.id.toString() : '';
     return request({
-        url: `${url}${order.id}`,
-        method: 'PATCH',
+        url: API_CONSTANTS.API_UPDATE_PAYMENT_STATUS.replace('{orderId}',   orderId),
+        method: REQUEST_METHOD.PATCH,
         data: {
             paymentStatus: order.paymentStatus
         }
     })
 }
+
+export const fetchPromocodes = (promocode: string) => {
+    if (promocode !== '')
+        return request({
+            url: API_CONSTANTS.API_GET_PROMO_CODE.replace('{promocode}',promocode),
+            method: REQUEST_METHOD.GET
+        })
+}
+
