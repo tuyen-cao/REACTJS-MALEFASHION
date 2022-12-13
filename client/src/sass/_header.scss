@@ -6,7 +6,7 @@
 }
 
 .header__top {
-    background: #111111;
+    background: $heading-color;
     padding: 10px 0;
 }
 
@@ -85,7 +85,7 @@
         li {
             list-style: none;
             font-size: 13px;
-            color: #111111;
+            color: $heading-color;
             padding: 2px 15px;
             cursor: pointer;
         }
@@ -208,7 +208,7 @@
         position: relative;
 
         span {
-            color: #0d0d0d;
+            color:$color-17;
             font-size: 11px;
             position: absolute;
             left: 5px;

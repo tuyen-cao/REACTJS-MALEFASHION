@@ -2,7 +2,7 @@
   Blog Hero
 -----------------------*/
 .blog-hero {
-    background: #f3f2ee;
+    background: $color-1;
     padding-top: 125px;
     padding-bottom: 190px;
 }
@@ -22,7 +22,7 @@
         li {
             list-style: none;
             font-size: 15px;
-            color: #3d3d3d;
+            color:$color-23;
             display: inline-block;
             margin-right: 40px;
             position: relative;
@@ -96,18 +96,18 @@
                 border-radius: 50%;
                 line-height: 46px;
                 text-align: center;
-                background: #4267b2;
+                background: $color-3;
 
                 &.twitter {
-                    background: #1da1f2;
+                    background: $color-twitter;
                 }
 
                 &.youtube {
-                    background: #fe0003;
+                    background: $color-youtube;
                 }
 
                 &.linkedin {
-                    background: #0173b2;
+                    background: $color-linkedin;
                 }
             }
         }
@@ -128,7 +128,7 @@
 }
 
 .blog__details__quote {
-    background: #f3f2ee;
+    background: $color-1;
     padding: 50px 40px 35px;
     border-radius: 5px;
     position: relative;
@@ -139,7 +139,7 @@
         color: $white-color;
         height: 50px;
         width: 50px;
-        background: #e53637;
+        background: $primary-color;
         border-radius: 50%;
         line-height: 50px;
         text-align: center;
@@ -157,7 +157,7 @@
     }
 
     h6 {
-        color: #e53637;
+        color: $primary-color;
         font-size: 15px;
         font-weight: 700;
         text-transform: uppercase;
@@ -165,7 +165,7 @@
 }
 
 .blog__details__option {
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid$color-14;
     padding-top: 15px;
     margin-bottom: 70px;
 }
@@ -211,7 +211,7 @@
 
 .blog__details__btns__item {
     display: block;
-    border: 1px solid #ebebeb;
+    border: 1px solid $border;
     padding: 25px 30px 30px;
     margin-bottom: 30px;
 
@@ -228,7 +228,7 @@
     }
 
     p {
-        color: #b7b7b7;
+        color:$color-13;
         margin-bottom: 10px;
 
         span {
@@ -250,7 +250,7 @@
 .blog__details__comment {
 
     h4 {
-        color: #333333;
+        color: $color-2;
         font-weight: 700;
         margin-bottom: 35px;
         text-align: center;
@@ -261,46 +261,46 @@
         input {
             height: 50px;
             width: 100%;
-            border: 1px solid #e1e1e1;
+            border: 1px solid $border-1;
             padding-left: 20px;
             font-size: 15px;
-            color: #b7b7b7;
+            color:$color-13;
             margin-bottom: 30px;
             @include transition(all, .3s);
-        
+
             &::placeholder {
-              color: #b7b7b7;
+                color:$color-13;
             }
 
             &:focus {
-                border-color: #000000;
+                border-color: $black-color;
             }
-          }
-        
-          textarea {
+        }
+
+        textarea {
             height: 120px;
             width: 100%;
-            border: 1px solid #e1e1e1;
+            border: 1px solid $border-1;
             padding-left: 20px;
             padding-top: 12px;
             font-size: 15px;
-            color: #b7b7b7;
+            color:$color-13;
             margin-bottom: 24px;
             resize: none;
             @include transition(all, .3s);
-        
+
             &::placeholder {
-              color: #b7b7b7;
+                color:$color-13;
             }
 
             &:focus {
-                border-color: #000000;
+                border-color: $black-color;
             }
-          }
-        
-          button {
+        }
+
+        button {
             letter-spacing: 4px;
             padding: 14px 35px;
-          }
+        }
     }
 }

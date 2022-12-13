@@ -2,7 +2,7 @@
   Breadcrumb
 -----------------------*/
 .breadcrumb-option {
-    background: #f3f2ee;
+    background: $color-1;
     padding: 40px 0;
 }
 
@@ -37,7 +37,7 @@
 
     span {
         font-size: 15px;
-        color: #b7b7b7;
+        color:$color-13;
         display: inline-block;
     }
 }

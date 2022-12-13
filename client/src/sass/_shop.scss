@@ -14,18 +14,18 @@
         input {
             width: 100%;
             font-size: 15px;
-            color: #b7b7b7;
+            color:$color-13;
             padding-left: 20px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid$color-14;
             height: 42px;
 
             &::placeholder {
-                color: #b7b7b7;
+                color:$color-13;
             }
         }
 
         button {
-            color: #b7b7b7;
+            color:$color-13;
             font-size: 15px;
             border: none;
             background: transparent;
@@ -54,12 +54,12 @@
             }
         }
     }
-    
+
     .card-body {
         padding: 0;
         padding-top: 10px;
         padding-bottom: 20px;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid$color-14;
     }
 
     .card-heading {
@@ -84,11 +84,11 @@
             list-style: none;
 
             a {
-                color: #b7b7b7;
+                color:$color-13;
                 font-size: 15px;
                 line-height: 32px;
                 @include transition(all, .3s);
-                
+
                 &:hover {
                     color: $heading-color;
                 }
@@ -104,6 +104,7 @@
         height: auto;
     }
 }
+
 .shop__sidebar__price {
     @extend .shop__sidebar__categories;
 
@@ -114,14 +115,14 @@
 
 .shop__sidebar__size {
     padding-top: 15px;
-    
+
     label {
         color: $heading-color;
         font-size: 15px;
         font-weight: 700;
         text-transform: uppercase;
         display: inline-block;
-        border: 1px solid #e5e5e5;
+        border: 1px solid$color-14;
         padding: 6px 25px;
         margin-bottom: 10px;
         margin-right: 5px;
@@ -152,41 +153,41 @@
         display: inline-block;
         margin-bottom: 10px;
         cursor: pointer;
-        
+
         &.c-1 {
-            background: #0b090c;
+            background:$color-11;
         }
-        
+
         &.c-2 {
-            background: #20315f;
+            background: $color-12;
         }
-        
+
         &.c-3 {
-            background: #f1af4d;
+            background:$color-22;
         }
-        
+
         &.c-4 {
-            background: #636068;
+            background:$color-21;
         }
 
         &.c-5 {
-            background: #57594d;
+            background:$color-20;
         }
-        
+
         &.c-6 {
-            background: #e8bac4;
+            background:$color-19;
         }
-        
+
         &.c-7 {
-            background: #d6c1d7;
+            background:$color-18;
         }
-        
+
         &.c-8 {
-            background: #ed1c24;
+            background: $color-9;
         }
-        
+
         &.c-9 {
-            background: #ffffff;
+            background: $white-color;
         }
 
         &:after {
@@ -195,7 +196,7 @@
             top: -3px;
             height: 36px;
             width: 36px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid$color-14;
             content: "";
             border-radius: 50%;
         }
@@ -209,12 +210,12 @@
 
 .shop__sidebar__tags {
     padding-top: 15px;
-    
+
     a {
-        color: #404040;
+        color: $color-7;
         font-size: 13px;
         font-weight: 700;
-        background: #f1f5f8;
+        background: $color-8;
         padding: 5px 18px;
         display: inline-block;
         text-transform: uppercase;
@@ -230,28 +231,28 @@
 }
 
 .shop__sidebar__accordion .card-heading a:after,
-.shop__sidebar__accordion .card-heading > a.active[aria-expanded=false]:after {
-  content: "\f107";
-  font-family: "FontAwesome";
-  font-size: 24px;
-  font-weight: 700;
-  color: $heading-color;
-  position: absolute;
-  right: 0;
-  top: 2px;
-  line-height: 20px;
+.shop__sidebar__accordion .card-heading>a.active[aria-expanded=false]:after {
+    content: "\f107";
+    font-family: "FontAwesome";
+    font-size: 24px;
+    font-weight: 700;
+    color: $heading-color;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    line-height: 20px;
 }
 
 .shop__sidebar__accordion .card-heading.active a:after {
-  content: "\f107";
-  font-family: "FontAwesome";
-  font-size: 24px;
-  font-weight: 700;
-  color: $heading-color;
-  position: absolute;
-  right: 0;
-  top: 2px;
-  line-height: 20px;
+    content: "\f107";
+    font-family: "FontAwesome";
+    font-size: 24px;
+    font-weight: 700;
+    color: $heading-color;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    line-height: 20px;
 }
 
 .shop__product__option {
@@ -281,8 +282,8 @@
         padding-right: 28px;
 
         &:after {
-            border-bottom: 1.5px solid #111111;
-            border-right: 1.5px solid #111111;
+            border-bottom: 1.5px solid $heading-color;
+            border-right: 1.5px solid $heading-color;
             height: 8px;
             right: 12px;
             width: 8px;
