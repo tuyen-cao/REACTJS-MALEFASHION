@@ -20,6 +20,7 @@ import { useCreateOrderData, useProductsInCartData } from 'hooks/useProductsInCa
 import { useUrlIdParams } from 'hooks/useUrlIdParams'
 import { selectedProducts } from 'reducers/productsReducer'
 import { PAYMENTMETHODS } from 'constants/card.constatnt'
+import CartTotal from 'components/utilities/CartTotal'
 
 
 const currency = "USD";
@@ -413,16 +414,8 @@ const Checkout = () => {
 
                                         </ul>
                                     }
-
-                                    <ul className="checkout-order__total-all">
-                                        <li>
-                                            Subtotal <span>$ {calculateSubTotal().toFixed(2)} </span>
-                                        </li>
-                                        <li>
-                                            Total {discount > 0 && `(Discount  ${discount} %)`}
-                                            <span>$ {calculateTotal().toFixed(2)}</span>
-                                        </li>
-                                    </ul>
+                                    <CartTotal wrapperClassName="checkout-order__total-all" />
+                                    
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                         eiusmod tempor incididunt ut labore et dolore magna aliqua.
