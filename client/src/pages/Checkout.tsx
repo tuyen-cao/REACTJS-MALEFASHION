@@ -22,19 +22,6 @@ import { selectedProducts } from 'reducers/productsReducer'
 import { PAYMENTMETHODS } from 'constants/card.constatnt'
 
 
-type product = {
-    productId: number
-}
-type order = {
-    id: string;
-    products?: product[],
-    total?: number,
-    discountedTotal?: number,
-    totalQuantity?: number,
-    paymentStatus?: string
-};
-
-
 const currency = "USD";
 const PromoCodeQuestionLink = WithQuestionLink(PromoCode);
 
@@ -155,7 +142,9 @@ const Checkout = () => {
     const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
 
     const calculateSubTotal = () => {
-        return Number(products?.reduce((preValue: number, product) => preValue + product.quantity * product.price, 0))
+        if (Number(products?.reduce((preValue: number, product) => preValue + product.quantity * product.price, 0)) > 0) {
+            return Number(products?.reduce((preValue: number, product) => preValue + product.quantity * product.price, 0))
+        } return 0
     }
     const calculateTotal = () => {
         return Number(calculateSubTotal() * (1 - discount / 100))

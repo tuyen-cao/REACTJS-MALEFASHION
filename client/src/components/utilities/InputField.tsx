@@ -1,45 +1,16 @@
 import { INPUTTYPES } from 'constants/inputFields.constant';
-import { FieldHookConfig, useField  } from 'formik';
-import React from 'react'
-const defaultProps = {
-    type: 'text',
-    label: '',
-    placeholder: '',
-    disabled: false,
-    required: false,
-    checked: false,
-};
+import { InputFieldProps } from 'models/types';
 
-type InputFieldProps = {
-    field: {
-        name: string,
-        value: string,
-        onChange: () => void,
-        onBlur: () => void,
-        error: string
-    },
-    form: {
-        errors: any,
-        touched: any
-    },
-
-    type: string,
-    label?: string,
-    placeholder?: string,
-    disabled?: boolean,
-    required?: boolean,
-    checked?: boolean,
-} & typeof defaultProps
 
 const InputField = (props: InputFieldProps) => {
-    
     const { field,
         form,
-        type,
-        label,
-        placeholder,
-        disabled,
-        required, checked } = props
+        type= 'text',
+        label= '',
+        placeholder= '',
+        disabled= false,
+        required= false,
+        checked = false, } = props
     const { name, value, onChange, onBlur } = field
     const { errors, touched } = form
     const showError = errors[name] && touched[name]
@@ -53,7 +24,7 @@ const InputField = (props: InputFieldProps) => {
                         <input type={type} id={name}
                             {...field}
                             disabled={disabled}
-                             />
+                        />
                         <span className="checkmark" />
                     </label>}
                 </>
@@ -85,4 +56,3 @@ const InputField = (props: InputFieldProps) => {
 }
 
 export default InputField
-InputField.defaultProps = defaultProps;

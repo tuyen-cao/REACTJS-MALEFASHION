@@ -4,26 +4,16 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { useQuery, useQueryClient } from 'react-query'
 import { addPromo } from '../reducers/paymentReducer';
-import { fetchPromocodes } from 'services/payment.service';
+import { PromoCodeFormValues, PromoCodeProps } from 'models/types';
 
-type FormValues = {
-    promocode: string,
-};
-
-const defaultProps = {
-    hasRef: false
-};
-
-
-type PromoCodeProps = {
-    hasRef: boolean
-} & typeof defaultProps;
 
 const PromoCode = (props: PromoCodeProps) => {
-    const { hasRef } = props
-   
+    const { hasRef = false } = props
+    const fetchPromocodes = (promocode: string) => {
+        return request({ url: `/promoCodes?code=${promocode}` })
+    }
 
-    const { control, register, handleSubmit, watch, formState: { errors } } = useForm<FormValues>();
+    const { control, register, handleSubmit, watch, formState: { errors } } = useForm<PromoCodeFormValues>();
     const promoCodeRef = useRef<HTMLInputElement | null>(null);
     const { ref, ...rest } = register('promocode');
     const [promocode, setPromocode] = useState("");
@@ -45,7 +35,7 @@ const PromoCode = (props: PromoCodeProps) => {
             }
         }
     )
-    const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const onSubmit: SubmitHandler<PromoCodeFormValues> = (data) => {
         setPromocode(data.promocode)
 
     };
@@ -94,6 +84,5 @@ const PromoCode = (props: PromoCodeProps) => {
         </>
     )
 }
-PromoCode.defaultProps = defaultProps;
 export default React.memo(PromoCode)
 

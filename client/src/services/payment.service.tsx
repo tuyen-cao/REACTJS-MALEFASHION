@@ -1,24 +1,10 @@
 import { API_CONSTANTS } from 'constants/api.constant'
 import { REQUEST_METHOD } from 'constants/methodRequest.constant'
-import { useQuery } from 'react-query'
+import { Order } from 'models/types'
 import { request } from 'utilities/axios-utils'
 
-const url = '/orders'
-type product = {
-    productId: number
-}
 
-type order = {
-    id?: number;
-    products?: product[],
-    total?: number,
-    discountedTotal?: number,
-    totalQuantity?: number,
-    paymentStatus?: string
-};
-
-
-export const addOrder = (order: order) => {
+export const addOrder = (order: Order) => {
     return request({
         url: API_CONSTANTS.API_ADD_ODER,
         method: REQUEST_METHOD.POST,
@@ -26,7 +12,7 @@ export const addOrder = (order: order) => {
     })
 }
 
-export const updatePaymentStatus = (order: order) => {
+export const updatePaymentStatus = (order: Order) => {
     const orderId: string = order.id !== undefined ? order.id.toString() : '';
     return request({
         url: API_CONSTANTS.API_UPDATE_PAYMENT_STATUS.replace('{orderId}',   orderId),

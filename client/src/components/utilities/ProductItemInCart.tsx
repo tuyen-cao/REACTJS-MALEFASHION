@@ -4,21 +4,6 @@ import { useDispatch } from 'react-redux'
 import { useTypedSelector } from 'store';
 import { removeItemCart, selectedProducts } from 'reducers/productsReducer';
 
-
-type ProductProps = {
-    product: {
-        id: number,
-        title: string,
-        price: number,
-        description: string,
-        category: string,
-        image: string,
-        type: string,
-    },
-    children?: React.ReactNode,
-    handleQuantityChange: ()=>{}
-}
-
 const ProductItemInCart = (props: any) => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);

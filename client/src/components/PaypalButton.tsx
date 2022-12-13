@@ -6,10 +6,6 @@ import {
 
 import { PayPalButtonsComponentOptions } from "@paypal/paypal-js/types/components/buttons";
 
-// This values are the props in the UI
-const amount = "2";
-
-
 const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleClick: () => void }) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
@@ -17,13 +13,15 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
     const { currency, showSpinner, handleClick } = Props
 
     let localStorageOrder = localStorage.getItem("orderID");
-    const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : null;
-    const amount = storedorder.discountedTotal > 0 ? storedorder.total - storedorder.discountedTotal :  storedorder.total
-   
+    const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : 0;
+    const amount = storedorder.discountedTotal > 0
+        ? storedorder.total - storedorder.discountedTotal : storedorder.total
+
+
     const payPalButtonsComponentOptions: PayPalButtonsComponentOptions = {
         style: { layout: "vertical" },
         createOrder(data, actions) {
-           
+
             return actions.order.create({
                 purchase_units: [
                     {
@@ -48,7 +46,7 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
                 handleClick()
                 let localStoragepayment = localStorage.getItem("payment");
                 const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
-                localStorage.setItem("payment",JSON.stringify({...storedpayment, message: "PAYPAL: Payment succeeded!"}))
+                localStorage.setItem("payment", JSON.stringify({ ...storedpayment, message: "PAYPAL: Payment succeeded!" }))
                 alert(
                     "Transaction completed by" +
                     (details?.payer.name?.given_name ?? "No details")
@@ -56,7 +54,7 @@ const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleCli
 
                 alert("Data details: " + JSON.stringify(data, null, 2));
             }));
-            
+
         }
     };
 

@@ -1,10 +1,6 @@
-type ProductId = number;
-type productInCart = {
-    id: ProductId;
-    quantity: number
-};
+import { BasketItem } from "models/types";
 
-export const useUrlIdParams = (urlParams: productInCart[]) => {
+export const useUrlIdParams = (urlParams: BasketItem[]) => {
     let params = '';
     if(urlParams) {
         urlParams.map((p: any) => {

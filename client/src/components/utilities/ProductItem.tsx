@@ -1,25 +1,8 @@
 import Rating from "../Rating"
 import styled from 'styled-components'
 import { PRODUCTTYPES } from "constants/product.constant"
-import { id } from "postcss-selector-parser"
+import { ProductProps } from "models/types"
 
-type ProductProps = {
-    product: {
-        id: number,
-        title: string,
-        price: number,
-        description: string,
-        category: string,
-        image: string,
-        type: string,
-        rating: {
-            rate: number,
-            count: number
-        },
-    },
-    handleAddToCart: (productId: number) => void,
-    handleAddWishlist: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-}
 const ProductItem = (props: ProductProps) => {
     const rating = props.product.rating,
         product = props.product

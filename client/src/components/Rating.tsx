@@ -1,22 +1,12 @@
+import { RatingProps } from 'models/types'
 import styled from 'styled-components'
 
-type RatingProps = {
-    rating: {
-        rate: number,
-        count: number
-    }
-} & typeof defaultProps;
-
-const defaultProps = {
-    rating: {
+const Rating = (props: RatingProps) => {
+    const { rating = {
         rate: 0,
         count: 0
-    }
-};
-
-
-const Rating = (props: RatingProps) => {
-    const rate = props.rating.rate
+    }} = props
+    const rate = rating.rate
     const renderRating = () => {
         let content = []
         for (let index = 0; index < 5; index++) {
@@ -31,7 +21,7 @@ const Rating = (props: RatingProps) => {
         </RatingStyled>
     )
 }
-Rating.defaultProps = defaultProps;
+
 export default Rating
 
 

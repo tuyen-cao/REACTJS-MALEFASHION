@@ -1,6 +1,7 @@
 import PagePreloder from 'components/PagePreloder';
 import { useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
+import { BasketItem } from 'models/types';
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch } from 'react-redux';
@@ -8,11 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { addPromo } from 'reducers/paymentReducer';
 import { resetCart } from 'reducers/productsReducer';
 import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils';
-type ProductId = number;
-type productInCart = {
-  id: ProductId;
-  quantity: number
-};
+
 
 const Completion = () => {
   const dispatch = useDispatch()
@@ -20,7 +17,7 @@ const Completion = () => {
   let localStoragepayment = localStorage.getItem("payment");
   const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
 
-  const productInCart: productInCart[] = storedpayment.products
+  const productInCart: BasketItem[] = storedpayment.products
 
   const { isLoading,
     data: productsInCart, } = useProductsInCartData(useUrlIdParams(productInCart))

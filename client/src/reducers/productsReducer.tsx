@@ -1,20 +1,7 @@
 
 import { RootState } from "../store";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-type productInCart = {
-    id: number;
-    quantity: number
-};
-
-type ProductsState = {
-    productsInCart: productInCart[],
-    whishlists: number[],
-    status: null,
-    amount: number,
-    limitItem: number,
-    total: number
-};
+import { BasketItem, ProductsState } from "models/types";
 
 const initialState: ProductsState = {
     productsInCart: [],
@@ -29,7 +16,7 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState: initialState,
     reducers: {
-        addToCart(state: ProductsState, action: PayloadAction<productInCart>) {
+        addToCart(state: ProductsState, action: PayloadAction<BasketItem>) {
             const index = state.productsInCart.findIndex(
                 ({ id }) => id === action.payload.id);
 
@@ -49,8 +36,7 @@ export const productsSlice = createSlice({
             })
             localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart));
         },
-        updateCart(state: ProductsState, action: PayloadAction<productInCart>) {
-            console.log(state.productsInCart)
+        updateCart(state: ProductsState, action: PayloadAction<BasketItem>) {
             const newArr = state.productsInCart.map(product => {
                 if (product.id === action.payload.id) {
 
@@ -91,7 +77,7 @@ export const getLimitItems = (state: RootState) => {
     return state.products.limitItem
 };
 export const getTotalItems = (state: RootState) => {
-    return state.products.total
+    return state.products.total 
 };
 // Action creators are generated for each case reducer function
 export const { addToCart, removeItemCart, updateCart, setAmount, resetCart, setLimitItem, setTotalItem } = productsSlice.actions

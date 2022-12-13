@@ -1,31 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { type } from '@testing-library/user-event/dist/type';
+import { BillingInfo, PaymentState } from 'models/types';
 import { RootState } from "../store";
-
-type discount = number;
-type shipping = number;
-type billingInfo = {
-    firstName?: string,
-    lastName?: string,
-    country?: string,
-    email?: string,
-    address?: string,
-    addressapartment?: string,
-    city?: string,
-    state?: string,
-    zipcpde?: string,
-    phone?: string,
-    acc?: boolean,
-    password?: string,
-    diffAcc?: boolean,
-    orderNote?: string,
-    paymentmethod?: string,
-}
-type PaymentState = {
-    discount: number,
-    shipping: number,
-    billingInfo: billingInfo
-};
 
 const initialState: PaymentState = {
     discount: 0,
@@ -53,13 +28,13 @@ export const paymentSlice = createSlice({
     name: 'payment',
     initialState: initialState,
     reducers: {
-        addPromo(state: PaymentState, action: PayloadAction<discount>) {
+        addPromo(state: PaymentState, action: PayloadAction<number>) {
             state.discount = action.payload
         },
-        addShipping(state: PaymentState, action: PayloadAction<shipping>) {
+        addShipping(state: PaymentState, action: PayloadAction<number>) {
             state.shipping = action.payload
         },
-        setBillingInfo(state: PaymentState, action: PayloadAction<billingInfo>) {
+        setBillingInfo(state: PaymentState, action: PayloadAction<BillingInfo>) {
             state.billingInfo = {...state.billingInfo,  ...action.payload}
         },
     }

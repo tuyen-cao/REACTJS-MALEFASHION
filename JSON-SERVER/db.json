@@ -433,6 +433,95 @@
       "discountedTotal": 0,
       "totalQuantity": 9,
       "id": 5
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": 15.99,
+      "discountedTotal": 0,
+      "totalQuantity": 1,
+      "id": 6
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": null,
+      "discountedTotal": null,
+      "totalQuantity": 1,
+      "id": 7
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": null,
+      "discountedTotal": null,
+      "totalQuantity": 1,
+      "id": 8
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": null,
+      "discountedTotal": null,
+      "totalQuantity": 1,
+      "id": 9
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": null,
+      "discountedTotal": null,
+      "totalQuantity": 1,
+      "id": 10
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": 0,
+      "discountedTotal": 0,
+      "totalQuantity": 1,
+      "id": 11
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": 15.99,
+      "discountedTotal": 0,
+      "totalQuantity": 1,
+      "id": 12
+    },
+    {
+      "products": [
+        {
+          "productId": 4
+        }
+      ],
+      "total": 15.99,
+      "discountedTotal": 0,
+      "totalQuantity": 1,
+      "id": 13,
+      "paymentStatus": null
     }
   ]
 }
