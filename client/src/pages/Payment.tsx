@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "components/PaymentForm";
 import { ErrorBoundary } from 'react-error-boundary'
-import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils'
+import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
 import PagePreloder from "components/PagePreloder";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.

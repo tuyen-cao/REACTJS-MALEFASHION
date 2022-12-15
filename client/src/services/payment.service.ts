@@ -1,7 +1,7 @@
 import { API_CONSTANTS } from 'constants/api.constant'
 import { REQUEST_METHOD } from 'constants/methodRequest.constant'
 import { Order } from 'models/types'
-import { request } from 'utilities/axios-utils'
+import { request } from 'utilities/axiosUtils'
 
 
 export const addOrder = (order: Order) => {

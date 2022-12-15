@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
 import ProductItem from './utilities/ProductItem'
 import { useCallback, useEffect, useState } from 'react';
-import { request } from 'utilities/axios-utils'
+import { request } from 'utilities/axiosUtils'
 import mixitup from 'mixitup';
 import { ErrorBoundary } from 'react-error-boundary'
-import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils'
+import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
 
 const ProductSectionMixitup = () => {
     const dispatch = useDispatch()

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Link } from 'react-router-dom'
-import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils';
+import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils';
 import ProductItemInCart from 'components/utilities/ProductItemInCart';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from 'store';

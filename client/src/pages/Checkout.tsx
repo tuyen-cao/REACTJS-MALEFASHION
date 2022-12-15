@@ -1,11 +1,10 @@
 import PromoCode from 'components/PromoCode'
 import { useFormik } from 'formik'
-import WithQuestionLink from 'hocs/withQuestionLink'
 import React, { useRef, useState, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { getPromo, setBillingInfo, getBillingInfo } from 'reducers/paymentReducer'
 import { useTypedSelector } from 'store';
-import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils'
+import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom'
 
@@ -21,6 +20,7 @@ import { useUrlIdParams } from 'hooks/useUrlIdParams'
 import { selectedProducts } from 'reducers/productsReducer'
 import { PAYMENTMETHODS } from 'constants/card.constatnt'
 import CartTotal from 'components/utilities/CartTotal'
+import WithQuestionLink from 'hocs/withQuestionLink'
 
 
 const currency = "USD";

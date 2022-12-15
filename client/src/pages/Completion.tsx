@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { addPromo } from 'reducers/paymentReducer';
 import { resetCart } from 'reducers/productsReducer';
-import { ErrorFallback, myErrorHandler } from 'utilities/error-boundary-utils';
+import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils';
 
 
 const Completion = () => {

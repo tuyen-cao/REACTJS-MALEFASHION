@@ -14,10 +14,8 @@ import "./assets/css/slicknav.min.css"
 
 import './sass/style.scss'
 
-import { BrowserRouter, Outlet } from 'react-router-dom'
-import router from './routers/router'
+import {  Outlet } from 'react-router-dom'
 import Header from './components/Header';
-import Breadcrumbs from './components/Breadcrumbs';
 import Footer from './components/Footer';
 import SearchModel from './components/SearchModel';
 

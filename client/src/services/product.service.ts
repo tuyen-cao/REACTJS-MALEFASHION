@@ -1,6 +1,6 @@
 import { REQUEST_METHOD } from 'constants/methodRequest.constant'
 import { useQuery } from 'react-query'
-import { request } from 'utilities/axios-utils'
+import { request } from 'utilities/axiosUtils'
 
 const url = '/products'
 
