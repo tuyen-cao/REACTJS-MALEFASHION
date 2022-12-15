@@ -20,6 +20,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./src",
+    "typeRoots": [ "./types", "./node_modules/@types"],
     "paths":{
       "@pages/*":["src/pages/*"],
       "@components/*":["src/components/*"],
@@ -31,6 +32,7 @@
       "@models/*":["src/models/*"],
     }
   },
+  "exclude": ["node_modules", "typings"],
   "include": [
     "src"
   ]

@@ -27,9 +27,7 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        
           <Header />
-         
           <PageRouters />
           <Outlet />
           <Footer />

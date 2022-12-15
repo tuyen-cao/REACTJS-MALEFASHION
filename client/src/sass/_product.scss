@@ -18,12 +18,13 @@
     display: inline-block;
     margin-right: 88px;
     cursor: pointer;
+    text-transform: capitalize;
 
     &:last-child {
       margin-right: 0;
     }
 
-    &.active {
+    &.mixitup-control-active {
       color: $heading-color;
     }
   }
