@@ -14,7 +14,6 @@ const ShoppingCartTable = () => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     const [myCart, setCart] = useState(productInCart)
-    const [subTotal, setSubTotal] = useState(0)
 
     const { isLoading,
         data: productsInCart, } = useProductsInCartData(useUrlIdParams(productInCart))
@@ -27,20 +26,15 @@ const ShoppingCartTable = () => {
             return obj;
         });
         setCart(newArr)
-        calculateSubTotal()
     }
-    const calculateSubTotal = useCallback(() => {
-        const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
-        setSubTotal(products?.reduce((preValue: number, product) => preValue + product.quantity * product.price, 0))
-    }, [productInCart, productsInCart])
+    
     
     const handleUpdateCart = () => {
         myCart.map((p) => dispatch(updateCart(p)))
     }
     useEffect(() => {
         setCart(productInCart)
-        calculateSubTotal()
-    }, [productInCart, calculateSubTotal])
+    }, [productInCart])
 
     if (isLoading) return <>
         <PagePreloder />
