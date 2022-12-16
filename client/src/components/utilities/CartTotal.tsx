@@ -6,7 +6,7 @@ import { selectedProducts } from 'reducers/productsReducer';
 import { useTypedSelector } from 'store';
 import { calculateTotalAmounts } from 'utilities/logic-fncs/calculateTotalAmounts';
 
-const CartTotal = (props: {wrapperClassName?:string}) => {
+const CartTotal: React.FC<{wrapperClassName?: string}> = ( props) => {
     const {wrapperClassName = ''} = props
     const discount = useTypedSelector(getPromo)
     const productInCart = useTypedSelector(selectedProducts);

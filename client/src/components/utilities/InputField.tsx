@@ -2,7 +2,7 @@ import { INPUTTYPES } from 'constants/inputFields.constant';
 import { InputFieldProps } from 'models/types';
 
 
-const InputField = (props: InputFieldProps) => {
+const InputField: React.FC<InputFieldProps> = (props) => {
     const { field,
         form,
         type= 'text',

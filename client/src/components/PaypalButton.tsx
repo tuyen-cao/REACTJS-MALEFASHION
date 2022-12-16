@@ -6,11 +6,11 @@ import {
 
 import { PayPalButtonsComponentOptions } from "@paypal/paypal-js/types/components/buttons";
 
-const PaypalButton = (Props: { currency: string, showSpinner: boolean, handleClick: () => void }) => {
+const PaypalButton: React.FC< { currency: string, showSpinner: boolean, handleClick: () => void }> = (props) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-    const { currency, showSpinner, handleClick } = Props
+    const { currency, showSpinner, handleClick } = props
 
     let localStorageOrder = localStorage.getItem("orderID");
     const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : 0;

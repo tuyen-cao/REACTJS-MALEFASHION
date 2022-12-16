@@ -7,7 +7,7 @@ import { addPromo } from '../reducers/paymentReducer';
 import { PromoCodeType, PromoCodeFormValues, PromoCodeProps } from 'models/types';
 
 
-const PromoCode = (props: PromoCodeProps) => {
+const PromoCode:React.FC<PromoCodeProps> = (props) => {
     const { hasRef = false } = props
     const fetchPromocodes = (promocode: string) => {
         return request({ url: `/promoCodes?code=${promocode}` })

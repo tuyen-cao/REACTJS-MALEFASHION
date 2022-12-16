@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { PRODUCTTYPES } from "constants/product.constant"
 import { ProductProps } from "models/types"
 
-const ProductItem = (props: ProductProps) => {
+const ProductItem: React.FC<ProductProps> = (props: ProductProps) => {
     const rating = props.product.rating,
         product = props.product
     const handleAddToCart = () => {

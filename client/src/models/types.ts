@@ -76,8 +76,8 @@ export type ProductProps = {
 }
 
 export type ProductInCartProps = {
-    products: Product[],
-    handleQuantityChange?: () => {}
+    product: Product,
+    handleChange: (id:number, value:number) => void
 }
 
 export type BasketItem = {

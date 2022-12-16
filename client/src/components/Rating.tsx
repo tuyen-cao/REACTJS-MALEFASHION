@@ -1,7 +1,7 @@
 import { RatingProps } from 'models/types'
 import styled from 'styled-components'
 
-const Rating = (props: RatingProps) => {
+const Rating:React.FC<RatingProps> = (props) => {
     const { rating = {
         rate: 0,
         count: 0
