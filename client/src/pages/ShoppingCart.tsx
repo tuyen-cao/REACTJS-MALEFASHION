@@ -32,7 +32,6 @@ const ShoppingCart = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <ShoppingCartTable />
-                            
                         </div>
                         <div className="col-lg-4">
                             {discount === 0 ? <PromoCode /> : null}

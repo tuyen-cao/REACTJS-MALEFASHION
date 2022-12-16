@@ -4,24 +4,24 @@ import PagePreloder from "./PagePreloder"
 import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
 import ProductItem from './utilities/ProductItem'
-import { useCallback, useEffect, useState } from 'react';
-import { request } from 'utilities/axiosUtils'
+import React, { useCallback, useEffect, useState } from 'react';
 import mixitup from 'mixitup';
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
+import { fetchProduct } from 'services/product.service'
+import { URLPARAMS } from 'constants/product.constant'
+import { ProductTypes } from 'models/types'
 
 const ProductSectionMixitup = () => {
     const dispatch = useDispatch()
-    const [productTypes, setProductType] = useState([])
+    const [productTypes, setProductType] = useState<string[]>([])
     const handleAddToCart = useCallback((productId: number) => {
         dispatch(addToCart({ id: productId, quantity: 1 }));
     }, [])
     const queryClient = useQueryClient()
     const { isLoading, data, error, isSuccess } = useQuery(
         'products',
-        () => {
-            return request({ url: '/products?_expand=productType&productTypeId_ne=0&_limit=8/productTypes' })
-        },
+        () => fetchProduct(URLPARAMS.ALLPRODUCTTYPESLIMITED),
         {
             select: (data) => {
                 const newProducts = data?.data?.map((product: any) => {
@@ -71,7 +71,7 @@ const ProductSectionMixitup = () => {
         const myTimeout = setTimeout(() => {
             const containerEl = document.querySelector('.product__filter');
             mixer = mixitup(containerEl)
-            const firstFilterSelector =  document.querySelector('.filter__controls li') as HTMLElement | null;
+            const firstFilterSelector = document.querySelector('.filter__controls li') as HTMLElement | null;
             mixer.filter(firstFilterSelector?.dataset.filter)
         }, 100);
         return (() => {
@@ -89,17 +89,9 @@ const ProductSectionMixitup = () => {
             {/* Product Section Begin */}
             <section className="product spad">
                 <div className="container" data-ref="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            {productTypes &&
-                                <ul className="filter__controls" data-ref="controls">
-                                    {productTypes.map((type:string) => {
-                                        return <li data-filter={`.${type.replace(' ', '-')}`} data-ref="filter">{type}</li>
-                                    })}
-                                </ul>
-                            }
-                        </div>
-                    </div>
+                    <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
+                        <FilterControls productTypes={productTypes} />
+                    </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
                         <div className="row product__filter" ><>
                             {data?.map((product: any) => {
@@ -114,7 +106,6 @@ const ProductSectionMixitup = () => {
                                             handleAddToCart={handleAddToCart}
                                             handleAddWishlist={handleAddWishlist} /></div>
                                 </>
-
                             })
                             }
                         </>
@@ -128,3 +119,21 @@ const ProductSectionMixitup = () => {
 }
 
 export default ProductSectionMixitup
+
+
+const FilterControls = React.memo((props: { productTypes: string[] }) => {
+    const { productTypes } = props
+    return <>
+        <div className="row">
+            <div className="col-lg-12">
+                {productTypes &&
+                    <ul className="filter__controls" data-ref="controls">
+                        {productTypes.map((type) => {
+                            return <li data-filter={`.${type.replace(' ', '-')}`} data-ref="filter">{type}</li>
+                        })}
+                    </ul>
+                }
+            </div>
+        </div>
+    </>
+})

@@ -1,9 +1,11 @@
+import { number, string } from "yargs"
+
 type Rating = {
     rate: number,
     count: number
 }
 
-type Product = {
+export  type Product = {
     id: number,
     title: string,
     price: number,
@@ -74,9 +76,8 @@ export type ProductProps = {
 }
 
 export type ProductInCartProps = {
-    product: Product,
-    children?: React.ReactNode,
-    handleQuantityChange: () => {}
+    products: Product[],
+    handleQuantityChange?: () => {}
 }
 
 export type BasketItem = {
@@ -106,4 +107,10 @@ export type PaymentState = {
     discount: number,
     shipping: number,
     billingInfo: BillingInfo
-};
+}
+
+export interface ProductTypes {
+    id: number,
+    type: string
+  }
+
