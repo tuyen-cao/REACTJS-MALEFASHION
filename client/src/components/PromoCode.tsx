@@ -2,9 +2,9 @@ import { request } from '../utilities/axiosUtils'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useDispatch } from 'react-redux';
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { addPromo } from '../reducers/paymentReducer';
-import { PromoCodeFormValues, PromoCodeProps } from 'models/types';
+import { PromoCodeType, PromoCodeFormValues, PromoCodeProps } from 'models/types';
 
 
 const PromoCode = (props: PromoCodeProps) => {
@@ -22,19 +22,19 @@ const PromoCode = (props: PromoCodeProps) => {
     const queryClient = useQueryClient()
 
     const { isLoading, data: promo, isError, error } = useQuery(
-        ['promocode', promocode],
+        ['promocode', promocode] ,
         () => fetchPromocodes(promocode),
         {
             enabled: Boolean(promocode),
             initialData: () => {
                 const promoCode = queryClient
                     .getQueriesData('promocode')
-                    ?.find((promo: any) => promo.code === promocode)
+                    ?.find((promo:any) => promo.code === promocode)
                 if (promoCode) return promoCode
                 else return undefined
             }
         }
-    )
+    )  
     const onSubmit: SubmitHandler<PromoCodeFormValues> = (data) => {
         setPromocode(data.promocode)
 

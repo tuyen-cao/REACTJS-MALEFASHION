@@ -1,5 +1,5 @@
 
-const LatestSection = () => {
+const LatestSection: React.FC = () => {
     return (
         <>
             {/* Latest Blog Section Begin */}

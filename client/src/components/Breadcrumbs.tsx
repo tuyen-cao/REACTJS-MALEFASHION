@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from "react";
 
 
-const Breadcrumbs = () => {
+const Breadcrumbs: React.FC = () => {
     const breadcrumbs = useBreadcrumbs();
     const [pageName, setPageName] = useState<string|undefined>('')
    

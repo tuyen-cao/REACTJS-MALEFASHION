@@ -11,7 +11,7 @@ import { ERRORTYPES } from "constants/card.constatnt";
 
 
 
-const PaymentForm = () => {
+const PaymentForm: React.FC = () => {
     const stripe = useStripe();
     const elements = useElements();
 

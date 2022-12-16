@@ -21,12 +21,13 @@ import { selectedProducts } from 'reducers/productsReducer'
 import { PAYMENTMETHODS } from 'constants/card.constatnt'
 import CartTotal from 'components/utilities/CartTotal'
 import WithQuestionLink from 'hocs/withQuestionLink'
+import { ProductHasQuantity, BillingInfo, Product } from 'models/types'
 
 
 const currency = "USD";
 const PromoCodeQuestionLink = WithQuestionLink(PromoCode);
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
     const discount = useTypedSelector(getPromo);
     const billingInfo = useTypedSelector(getBillingInfo);
 
@@ -83,7 +84,7 @@ const Checkout = () => {
     const formik = useFormik({
         initialValues: formikinitialValues,
         validationSchema: validationSchema,
-        onSubmit: (values: any) => {
+        onSubmit: (values: BillingInfo) => {
             dispatch(setBillingInfo({ ...values }))
         },
     });
@@ -94,7 +95,7 @@ const Checkout = () => {
         validationSchema: Yup.object().shape({
             paymentmethod: Yup.string().required('This field is required.'),
         }),
-        onSubmit: (values: any) => {
+        onSubmit: (values: BillingInfo) => {
             dispatch(setBillingInfo({ ...values }))
         },
     })
@@ -140,7 +141,7 @@ const Checkout = () => {
         "disable-funding": "credit,card"
     };
 
-    const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
+    const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: Product) => p2.id === p1.id) }))
 
     const calculateSubTotal = () => {
         if (Number(products?.reduce((preValue: number, product) => preValue + product.quantity * product.price, 0)) > 0) {
@@ -398,7 +399,7 @@ const Checkout = () => {
 
                                     {productsInCart &&
                                         <ul className="checkout-order__total-products">
-                                            {products.map((p: any, index: number) => {
+                                            {products.map((p: ProductHasQuantity, index: number) => {
                                                 let formattedNumber = (index + 1).toLocaleString('en-US', {
                                                     minimumIntegerDigits: 2,
                                                     useGrouping: false

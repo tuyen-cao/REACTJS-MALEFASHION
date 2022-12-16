@@ -1,5 +1,5 @@
 
-const InstagramSection = () => {
+const InstagramSection: React.FC = () => {
     return (
         <>
             {/* Instagram Section Begin */}

@@ -9,7 +9,7 @@ import ShopIndex from 'pages/ShopIndex'
 import ShoppingCart from 'pages/ShoppingCart'
 import { Route, Routes } from 'react-router-dom'
 
-const PageRouters = () => {
+const PageRouters: React.FC = () => {
   return <>
     <Routes>
       <Route index element={<Homepage />}></Route>

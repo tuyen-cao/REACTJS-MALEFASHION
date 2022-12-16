@@ -8,7 +8,7 @@ import PromoCode from 'components/PromoCode';
 import ShoppingCartTable from 'components/ShoppingCartTable';
 import CartTotal from 'components/utilities/CartTotal';
 
-const ShoppingCart = () => {
+const ShoppingCart: React.FC = () => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     const discount = useTypedSelector(getPromo);

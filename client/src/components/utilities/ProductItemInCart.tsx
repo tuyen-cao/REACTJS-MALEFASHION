@@ -3,8 +3,9 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from 'store';
 import { removeItemCart, selectedProducts } from 'reducers/productsReducer';
+import { Product } from 'models/types';
 
-const ProductItemInCart = (props: any) => {
+const ProductItemInCart = (props: {product: Product, handleChange: (id:number, value:number) => void}) => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     const product = props.product

@@ -1,5 +1,5 @@
 
-function Footer() {
+const Footer: React.FC = () => {
     return (
         <>
             {/* Footer Section Begin */}

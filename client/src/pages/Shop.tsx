@@ -2,7 +2,7 @@ import ProductSection from "components/ProductSection"
 
 
 
-const Shop = () => {
+const Shop: React.FC = () => {
     return (
         <>
            

@@ -5,8 +5,9 @@ import ShoppingCartLink from "./utilities/ShoppingCartLink"
 import { useTypedSelector } from "store";
 import { addToCart, selectedProducts } from "reducers/productsReducer";
 import { useDispatch } from "react-redux";
+import { BasketItem } from "models/types";
 
-function Header() {
+const Header: React.FC = () => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     useEffect(() => {
@@ -14,7 +15,7 @@ function Header() {
         const storedProductsInCart = typeof localStorageProductsInCart === "string"
             ? JSON.parse(localStorageProductsInCart) : [];
         if (productInCart.length === 0 && storedProductsInCart.length > 0) {
-            storedProductsInCart.map((product: any) => {
+            storedProductsInCart.map((product: BasketItem) => {
                 dispatch(addToCart(product))
             })
         }

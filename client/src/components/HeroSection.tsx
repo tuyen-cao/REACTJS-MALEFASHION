@@ -1,5 +1,5 @@
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
     return (
         <>
              {/* Hero Section Begin */}

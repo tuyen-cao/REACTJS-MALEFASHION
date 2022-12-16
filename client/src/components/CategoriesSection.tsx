@@ -1,5 +1,5 @@
 
-const CategoriesSection = () => {
+const CategoriesSection: React.FC = () => {
     return (
         <>
               {/* Categories Section Begin */}

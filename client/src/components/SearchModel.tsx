@@ -1,5 +1,5 @@
 
-const SearchModel = () => {
+const SearchModel: React.FC = () => {
     return (
         <>
             {/* Search Begin */}

@@ -1,19 +1,17 @@
 import PagePreloder from 'components/PagePreloder';
 import { useProductsInCartData, useUpdatePaymentStatusData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
-import { BasketItem } from 'models/types';
+import { BasketItem, Product, ProductHasQuantity } from 'models/types';
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
 import { addPromo } from 'reducers/paymentReducer';
 import { resetCart } from 'reducers/productsReducer';
 import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils';
 
 
-const Completion = () => {
+const Completion: React.FC = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   let localStoragepayment = localStorage.getItem("payment");
   const storedpayment = localStoragepayment ? JSON.parse(localStoragepayment) : [];
 
@@ -22,7 +20,7 @@ const Completion = () => {
   const { isLoading,
     data: productsInCart, } = useProductsInCartData(useUrlIdParams(productInCart))
 
-  const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: any) => p2.id === p1.id) }))
+  const products = productInCart?.map(p1 => ({ ...p1, ...productsInCart?.find((p2: Product) => p2.id === p1.id) }))
 
   const mutateUpdatePaymentStatus = useUpdatePaymentStatusData()
 
@@ -67,7 +65,7 @@ const Completion = () => {
                         <span>PRODUCT NAME </span><span>QTY</span>
                         <span>PRICE</span>
                       </li>
-                      {products.map((p: any, index: number) => {
+                      {products.map((p: ProductHasQuantity, index: number) => {
                         let formattedNumber = (index + 1).toLocaleString('en-US', {
                           minimumIntegerDigits: 2,
                           useGrouping: false

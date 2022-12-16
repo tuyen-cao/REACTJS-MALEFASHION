@@ -11,7 +11,7 @@ import PagePreloder from "components/PagePreloder";
 const PUBLIC_KEY = "pk_test_51Lx6kmA7e2lr9K2Y0GeZV41MIfic68R6WIDLp0mNro4h7na87pT1AhsiX1NkmQ5ML7qp0wd1LCNGiodYmkyfiyKr00LxT5cX5f"
 const stripePromise = loadStripe(PUBLIC_KEY)
 
-const Payment = () => {
+const Payment: React.FC = () => {
     const [clientSecret, setClientSecret] = useState("");
     let localStorageOrder = localStorage.getItem("orderID");
     const storedorder = localStorageOrder ? JSON.parse(localStorageOrder) : null;

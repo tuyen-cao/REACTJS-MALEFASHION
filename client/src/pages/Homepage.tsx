@@ -1,7 +1,7 @@
 import ProductSectionMixitup from 'components/ProductSectionMixitup'
 import React from 'react'
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
     return (
         <>
             <ProductSectionMixitup></ProductSectionMixitup>

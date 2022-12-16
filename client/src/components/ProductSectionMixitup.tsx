@@ -10,9 +10,9 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
 import { fetchProduct } from 'services/product.service'
 import { URLPARAMS } from 'constants/product.constant'
-import { ProductTypes } from 'models/types'
+import { Product, ProductHasType, ProductTypes } from 'models/types'
 
-const ProductSectionMixitup = () => {
+const ProductSectionMixitup: React.FC = () => {
     const dispatch = useDispatch()
     const [productTypes, setProductType] = useState<string[]>([])
     const handleAddToCart = useCallback((productId: number) => {
@@ -24,29 +24,27 @@ const ProductSectionMixitup = () => {
         () => fetchProduct(URLPARAMS.ALLPRODUCTTYPESLIMITED),
         {
             select: (data) => {
-                const newProducts = data?.data?.map((product: any) => {
+                const newProducts = data?.data?.map((product: ProductHasType) => {
                     return { ...product, type: product.productType.type }
                 })
                 return newProducts
             }
             ,
             onSuccess: (data) => {
-                const uniqueIds: any[] = [];
+                const uniqueIds: string[] = [];
 
-                const unique = data?.filter((element: any) => {
-                    const isDuplicate = uniqueIds.includes(element.productType.type);
+                const unique = data?.filter((element: Product) => {
+                    const isDuplicate = uniqueIds.includes(element.type);
 
                     if (!isDuplicate) {
-                        uniqueIds.push(element.productType.type);
-
-                        return element.productType.type;
+                        uniqueIds.push(element.type);
+                        return element.type;
                     }
-
                     return false;
                 });
 
                 setProductType(() => {
-                    return unique.map((type: any) => type.productType.type)
+                    return unique.map((product: Product) => product.type)
                 })
             },
             onError: (_error) => {
@@ -65,12 +63,10 @@ const ProductSectionMixitup = () => {
         console.log("add to wishlist")
     }
 
-    let mixer: any;
-
     useEffect(() => {
         const myTimeout = setTimeout(() => {
             const containerEl = document.querySelector('.product__filter');
-            mixer = mixitup(containerEl)
+            const mixer = mixitup(containerEl)
             const firstFilterSelector = document.querySelector('.filter__controls li') as HTMLElement | null;
             mixer.filter(firstFilterSelector?.dataset.filter)
         }, 100);
@@ -94,7 +90,7 @@ const ProductSectionMixitup = () => {
                     </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
                         <div className="row product__filter" ><>
-                            {data?.map((product: any) => {
+                            {data?.map((product: ProductHasType) => {
                                 return <>
                                     <div data-ref="item"
                                         className={`col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix 

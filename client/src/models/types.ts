@@ -5,7 +5,7 @@ type Rating = {
     count: number
 }
 
-export  type Product = {
+export type Product = {
     id: number,
     title: string,
     price: number,
@@ -112,5 +112,17 @@ export type PaymentState = {
 export interface ProductTypes {
     id: number,
     type: string
-  }
+}
 
+export type ProductHasType = Product & {
+    productType: ProductTypes
+}
+
+export type ProductHasQuantity = Product & BasketItem
+
+
+export interface PromoCodeType {
+    id: number,
+    code: string,
+    value: string
+}

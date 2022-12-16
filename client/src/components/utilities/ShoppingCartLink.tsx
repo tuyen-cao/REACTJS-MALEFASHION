@@ -1,5 +1,6 @@
 import { useProductsInCartData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
+import { BasketItem } from 'models/types';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { selectedProducts } from 'reducers/productsReducer';
@@ -7,7 +8,7 @@ import { useTypedSelector } from 'store';
 import styled from 'styled-components'
 import { calculateTotalAmounts } from 'utilities/logic-fncs/calculateTotalAmounts';
 
-const ShoppingCartLink = () => {
+const ShoppingCartLink: React.FC = () => {
 
     const productInCart = useTypedSelector(selectedProducts);
     const { isLoading, data: productsInCart, isSuccess, error } = useProductsInCartData(useUrlIdParams(productInCart))
@@ -18,7 +19,7 @@ const ShoppingCartLink = () => {
                 <Link to='shop/shopping-cart'>
                     <img src="/img/icon/cart.png" alt="" />
                     <BadgeStyled className="badge rounded-pill bg-danger">{productInCart?.reduce(
-                        (preValue: number, prod: any) => preValue + prod.quantity, 0)}</BadgeStyled>
+                        (preValue: number, prod: BasketItem) => preValue + prod.quantity, 0)}</BadgeStyled>
                 </Link>
                 <div className="price">{calculateTotalAmounts(productInCart, productsInCart)}</div>
             </>}

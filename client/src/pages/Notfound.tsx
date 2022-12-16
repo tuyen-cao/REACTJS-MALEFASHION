@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Notfound = () => {
+const Notfound: React.FC = () => {
   return <>    
      <Page404Styled className="text-center">Page not found</Page404Styled>
   </>

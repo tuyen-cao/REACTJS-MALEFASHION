@@ -1,5 +1,5 @@
 
-const BannerSection = () => {
+const BannerSection: React.FC = () => {
     return (
         <>
             {/* Banner Section Begin */}

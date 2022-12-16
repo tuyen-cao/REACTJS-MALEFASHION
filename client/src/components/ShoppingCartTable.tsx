@@ -11,7 +11,7 @@ import { useUrlIdParams } from 'hooks/useUrlIdParams';
 import PagePreloder from './PagePreloder';
 import { Product } from 'models/types';
 
-const ShoppingCartTable = () => {
+const ShoppingCartTable: React.FC = () => {
     const dispatch = useDispatch()
     const productInCart = useTypedSelector(selectedProducts);
     const [myCart, setCart] = useState(productInCart)
@@ -63,7 +63,7 @@ const ShoppingCartProductsTable = (props: { products: Product[], handleQuantityC
                 </thead>
                 <tbody>
 
-                    {products?.map((product: any,) => {
+                    {products?.map((product: Product) => {
                         return <>
                             <ErrorBoundary
                                 FallbackComponent={ErrorFallback}

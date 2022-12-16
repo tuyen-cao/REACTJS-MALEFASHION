@@ -1,4 +1,5 @@
 
+import { Product } from 'models/types';
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { addOrder, updatePaymentStatus } from 'services/payment.service';
 import { fetchProduct } from 'services/product.service';
@@ -13,7 +14,7 @@ export const useProductsInCartData = (urlParams: string, onSuccess = () => { }, 
             onSuccess,
             onError,
             select: (data) => {
-                return data?.data?.map((product: any) => (({ id, price, title, image }) => ({ id, price, title, image }))(product))
+                return data?.data?.map((product: Product) => (({ id, price, title, image }) => ({ id, price, title, image }))(product))
             },
             initialData: () => {
                 const productsInCart = queryClient.getQueriesData('products-in-cart')

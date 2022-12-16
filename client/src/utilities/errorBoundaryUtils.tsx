@@ -1,4 +1,4 @@
-export const ErrorFallback = ({ error, resetErrorBoundary }: any) => {
+export const ErrorFallback: React.FC = ({ error, resetErrorBoundary }: any) => {
     return (
         <div role="alert">
             <p>Something went wrong:</p>
