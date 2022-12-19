@@ -1,11 +1,11 @@
 import ProductSection from "components/ProductSection"
+import SearchForm from "components/SearchForm"
 
 
 
 const Shop: React.FC = () => {
     return (
         <>
-           
             {/* Shop Section Begin */}
             <section className="shop spad">
                 <div className="container">
@@ -13,12 +13,10 @@ const Shop: React.FC = () => {
                         <div className="col-lg-3">
                             <div className="shop__sidebar">
                                 <div className="shop__sidebar__search">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search..." />
-                                        <button type="submit">
-                                            <span className="icon_search" />
-                                        </button>
-                                    </form>
+                                    <SearchForm
+                                        hasSubmitBtn
+                                        placeholder="Search..."
+                                        handleSubmit = {() => { console.log("submit") }} />
                                 </div>
                                 <div className="shop__sidebar__accordion">
                                     <div className="accordion" id="accordionExample">
@@ -278,7 +276,7 @@ const Shop: React.FC = () => {
                                 </div>
                             </div>
                             <div className="row">
-                            <ProductSection/>
+                                <ProductSection />
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">

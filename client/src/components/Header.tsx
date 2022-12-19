@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { ReactEventHandler, useEffect } from "react"
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ShoppingCartLink from "./utilities/ShoppingCartLink"
@@ -19,7 +19,7 @@ const Header: React.FC = () => {
                 dispatch(addToCart(product))
             })
         }
-    }, []) 
+    }, [])
     return (
         <>
 
@@ -42,9 +42,7 @@ const Header: React.FC = () => {
                     </div>
                 </div>
                 <div className="offcanvas__nav__option">
-                    <a href="#" className="search-switch">
-                        <img src="/img/icon/search.png" alt="" />
-                    </a>
+                    <SearchSwitch />
                     <a href="#">
                         <img src="/img/icon/heart.png" alt="" />
                     </a>
@@ -135,9 +133,7 @@ const Header: React.FC = () => {
                         </div>
                         <div className="col-lg-3 col-md-3">
                             <div className="header__nav__option">
-                                <a href="#" className="search-switch">
-                                    <img src="/img/icon/search.png" alt="" />
-                                </a>
+                                <SearchSwitch />
                                 <a href="#">
                                     <img src="/img/icon/heart.png" alt="" />
                                 </a>
@@ -164,3 +160,18 @@ const BadgeStyled = styled.span`
     left: -5px;
     top: 15px!important;
 `;
+
+
+const SearchSwitch = () => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+        document.getElementById('search-model')!.style.display = "block";
+    }
+    return (
+        <>
+            <button className="search-switch border-0 bg-transparent" onClick={handleClick}>
+                <img src="/img/icon/search.png" alt="" />
+            </button>
+        </>
+    )
+}

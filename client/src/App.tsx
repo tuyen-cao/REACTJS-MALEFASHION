@@ -14,7 +14,7 @@ import "./assets/css/slicknav.min.css"
 
 import './sass/style.scss'
 
-import {  Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SearchModel from './components/SearchModel';
@@ -25,13 +25,14 @@ const App: React.FC = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-          <Header />
-          <PageRouters />
-          <Outlet />
-          <Footer />
-          <SearchModel />
+        <Header />
+        <PageRouters />
+        <Outlet />
+        <Footer />
+        <SearchModel />
         <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
+     
     </>
   );
 }

@@ -131,4 +131,11 @@ export interface BlackButtonProps  {
     handleClick?: () => void,
     type?: "button" | "submit" | "reset" | undefined,
     cssClass?: string  
-};
+}
+
+export interface SearchFormProps {
+    cssClass?: string,
+    hasSubmitBtn?: boolean,
+    placeholder?: string,
+    handleSubmit: () => void
+}
