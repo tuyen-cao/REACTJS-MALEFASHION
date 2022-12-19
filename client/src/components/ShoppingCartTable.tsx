@@ -10,6 +10,7 @@ import { useProductsInCartData } from 'hooks/useProductsInCartData';
 import { useUrlIdParams } from 'hooks/useUrlIdParams';
 import PagePreloder from './PagePreloder';
 import { Product } from 'models/types';
+import BlackButton from './utilities/BlackButton';
 
 const ShoppingCartTable: React.FC = () => {
     const dispatch = useDispatch()
@@ -46,7 +47,7 @@ const ShoppingCartTable: React.FC = () => {
         </>
     )
 }
-export default  React.memo(ShoppingCartTable)
+export default React.memo(ShoppingCartTable)
 
 const ShoppingCartProductsTable = (props: { products: Product[], handleQuantityChange: (productId: number, value: number) => void }) => {
     const { products, handleQuantityChange } = props
@@ -94,9 +95,9 @@ const ShoppingCartTableActions = (props: { handleUpdateCart: () => void }) => {
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="continue__btn update__btn">
-                    <button className='bg-black border-0' onClick={handleUpdateCart}>
-                        <i className="fa fa-spinner" /> Update cart
-                    </button>
+                    <BlackButton handleClick={handleUpdateCart} >
+                        <><i className="fa fa-spinner" /> Update cart</>
+                    </BlackButton>
                 </div>
             </div>
         </div>

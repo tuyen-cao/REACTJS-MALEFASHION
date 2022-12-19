@@ -22,6 +22,7 @@ import { PAYMENTMETHODS } from 'constants/card.constatnt'
 import CartTotal from 'components/utilities/CartTotal'
 import WithQuestionLink from 'hocs/withQuestionLink'
 import { ProductHasQuantity, BillingInfo, Product } from 'models/types'
+import BlackButton from 'components/utilities/BlackButton'
 
 
 const currency = "USD";
@@ -416,7 +417,7 @@ const Checkout: React.FC = () => {
                                         </ul>
                                     }
                                     <CartTotal wrapperClassName="checkout-order__total-all" />
-                                    
+
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                         eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -464,10 +465,10 @@ const Checkout: React.FC = () => {
                                                 }}
                                             />
                                         </PayPalScriptProvider>
-                                    </> : <button type="submit" className="site-btn" onClick={handleCheckout}>
-
+                                    </> : <BlackButton type="submit" cssClass='site-btn' handleClick={handleCheckout}>
                                         <>PLACE ORDER</>
-                                    </button>}
+                                    </BlackButton>}
+
                                 </div>
                             </div>
                         </div>

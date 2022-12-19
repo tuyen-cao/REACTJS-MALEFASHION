@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux';
 import { useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { addPromo } from '../reducers/paymentReducer';
 import { PromoCodeType, PromoCodeFormValues, PromoCodeProps } from 'models/types';
+import BlackButton from './utilities/BlackButton';
 
 
-const PromoCode:React.FC<PromoCodeProps> = (props) => {
+const PromoCode: React.FC<PromoCodeProps> = (props) => {
     const { hasRef = false } = props
     const fetchPromocodes = (promocode: string) => {
         return request({ url: `/promoCodes?code=${promocode}` })
@@ -22,19 +23,19 @@ const PromoCode:React.FC<PromoCodeProps> = (props) => {
     const queryClient = useQueryClient()
 
     const { isLoading, data: promo, isError, error } = useQuery(
-        ['promocode', promocode] ,
+        ['promocode', promocode],
         () => fetchPromocodes(promocode),
         {
             enabled: Boolean(promocode),
             initialData: () => {
                 const promoCode = queryClient
                     .getQueriesData('promocode')
-                    ?.find((promo:any) => promo.code === promocode)
+                    ?.find((promo: any) => promo.code === promocode)
                 if (promoCode) return promoCode
                 else return undefined
             }
         }
-    )  
+    )
     const onSubmit: SubmitHandler<PromoCodeFormValues> = (data) => {
         setPromocode(data.promocode)
 
@@ -67,8 +68,9 @@ const PromoCode:React.FC<PromoCodeProps> = (props) => {
                                 promoCodeRef.current?.focus()
                             }} />
                         : <input type="text" placeholder="Coupon code"  {...register("promocode")} />}
-
-                    <button type='submit'  >Apply</button>
+                    <BlackButton type='submit'>
+                        <>Apply</>
+                    </BlackButton>
                 </form>
 
                 {!isLoading

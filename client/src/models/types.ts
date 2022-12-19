@@ -1,4 +1,4 @@
-import { number, string } from "yargs"
+import { ReactElement } from "react"
 
 type Rating = {
     rate: number,
@@ -126,3 +126,9 @@ export interface PromoCodeType {
     code: string,
     value: string
 }
+export interface BlackButtonProps  {
+    children: ReactElement ,
+    handleClick?: () => void,
+    type?: "button" | "submit" | "reset" | undefined,
+    cssClass?: string  
+};
