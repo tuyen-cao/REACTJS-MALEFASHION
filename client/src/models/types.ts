@@ -1,5 +1,6 @@
 import { ReactElement } from "react"
 
+
 type Rating = {
     rate: number,
     count: number
@@ -77,7 +78,7 @@ export type ProductProps = {
 
 export type ProductInCartProps = {
     product: Product,
-    handleChange: (id:number, value:number) => void
+    handleChange: (id: number, value: number) => void
 }
 
 export type BasketItem = {
@@ -126,11 +127,11 @@ export interface PromoCodeType {
     code: string,
     value: string
 }
-export interface BlackButtonProps  {
-    children: ReactElement ,
+export interface BlackButtonProps {
+    children: ReactElement,
     handleClick?: () => void,
     type?: "button" | "submit" | "reset" | undefined,
-    cssClass?: string  
+    cssClass?: string
 }
 
 export interface SearchFormProps {
@@ -138,4 +139,20 @@ export interface SearchFormProps {
     hasSubmitBtn?: boolean,
     placeholder?: string,
     handleSubmit: () => void
+}
+
+export interface ShowingFilterResult {
+    currentPage?: number,
+    numOfItems: number,
+    totalItems: number
+}
+
+export interface PagingInfo {
+    currentPage?: number,
+    limitItems: number,
+    totalItems: number
+}
+export interface sortOptionType {
+   text: string,
+   value: string
 }

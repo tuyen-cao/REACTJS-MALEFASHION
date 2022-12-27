@@ -1,10 +1,63 @@
-import ProductSection from "components/ProductSection"
+import PagePreloder from "components/PagePreloder"
 import SearchForm from "components/SearchForm"
+import NiceSelect from "components/utilities/NiceSelect"
+import ProductItem from "components/utilities/ProductItem"
+import { Product, ShowingFilterResult } from "models/types"
 
-import { Accordion, Card } from "react-bootstrap";
-import { ScrollContainer } from "react-nice-scroll";
+import { Accordion, Card } from "react-bootstrap"
+import Pagination from 'react-bootstrap/Pagination'
+import { ScrollContainer } from "react-nice-scroll"
+
+import { useQuery } from 'react-query'
+import { useDispatch } from 'react-redux'
+import { addToCart } from 'reducers/productsReducer'
+import { fetchProduct } from 'services/product.service'
+import { useCallback, useState, useEffect } from 'react';
+import { NUMOFITEMPERPAGE, URLPARAMS } from 'constants/product.constant'
+import ReactPaginate from 'react-paginate';
+
 
 const Shop: React.FC = () => {
+    const [page, setPage] = useState(1)
+    const [rangePrice, setRangePrice] = useState("_sort=price&_price=asc")
+    const { isLoading, data, isError, error, isPreviousData } = useQuery(
+        ['products', { page, rangePrice }],
+        () => fetchProduct(URLPARAMS.PRODUCTFILTER
+            .replace('{limit}', NUMOFITEMPERPAGE.toString())
+            .replace('{page}', page.toString())
+            .replace('{range}', () => {
+                console.log(rangePrice.toString())
+                return rangePrice.toString()
+            })),
+        {
+            keepPreviousData: true
+        }
+    )
+
+    const handlePageChange = (value: number) => {
+        setPage(value + 1)
+    }
+
+    const handleProductSort = (value: string) => {
+        let range = ""
+        console.log(value)
+        if (value === "asc") {
+            range = `_sort=price&_price=${value}`
+        }
+        else {
+
+            range = "price_gte=" + value.replace("-", "&price_lte=")
+        }
+        setPage(1)
+        setRangePrice(range)
+    }
+    if (isLoading) return <>
+        <PagePreloder />
+    </>
+    if (isError)
+        return <>Error: {error}</>
+
+
     return (
         <>
             {/* Shop Section Begin */}
@@ -13,41 +66,14 @@ const Shop: React.FC = () => {
                     <div className="row">
                         <SideBar />
                         <div className="col-lg-9">
-                            <div className="shop__product__option">
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <div className="shop__product__option__left">
-                                            <p>Showing 1–12 of 126 results</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6 col-md-6 col-sm-6">
-                                        <div className="shop__product__option__right">
-                                            <p>Sort by Price:</p>
-                                            <select>
-                                                <option value="">Low To High</option>
-                                                <option value="">$0 - $55</option>
-                                                <option value="">$55 - $100</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <ProductSection />
-                            </div>
-                            <div className="row">
-                                <div className="col-lg-12">
-                                    <div className="product__pagination">
-                                        <a className="active" href="#">
-                                            1
-                                        </a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <span>...</span>
-                                        <a href="#">21</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <ProductOption showingFilterResult={{
+                                currentPage: page,
+                                numOfItems: data?.data?.length === NUMOFITEMPERPAGE ? NUMOFITEMPERPAGE : data?.data?.length,
+                                totalItems: data.headers['x-total-count']
+                            }} onProductSort={handleProductSort} />
+                            <ProductSection productList={data.data} />
+                            {data.headers['x-total-count'] > NUMOFITEMPERPAGE &&
+                                <PaginationBlock totalItems={data.headers['x-total-count']} onPageChange={handlePageChange} />}
                         </div>
                     </div>
                 </div>
@@ -380,4 +406,115 @@ const SideBar: React.FC = () => {
             </div>
         </div>
     </>
+}
+
+const PaginationBlock: React.FC<{ totalItems?: number, onPageChange?: (value: number) => void }> = (props) => {
+    const { totalItems, onPageChange } = props
+    return <>
+        <div className="row">
+            <div className="col-lg-12">
+                <div className="product__pagination">
+                    <PaginatedItems totalItems={totalItems} onPageChange={onPageChange} />
+                </div>
+            </div>
+        </div>
+    </>
+}
+
+
+const PaginatedItems: React.FC<{ totalItems?: number, onPageChange?: (value: number) => void }> = (props) => {
+    const { totalItems = 0, onPageChange = () => { } } = props
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event: { selected: number }) => {
+        onPageChange(event.selected)
+    };
+
+
+    return (
+        <>
+            <ReactPaginate
+                previousLabel="Previous"
+                nextLabel="Next"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakLabel="..."
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                pageCount={Math.ceil(totalItems / NUMOFITEMPERPAGE)}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+
+                containerClassName="justify-content-center pagination"
+                activeClassName="active"
+
+                onPageChange={handlePageClick}
+            />
+        </>
+    );
+}
+
+
+const ProductOption: React.FC<{ showingFilterResult?: ShowingFilterResult, onProductSort: (value: string) => void }> = (props) => {
+    const { showingFilterResult, onProductSort } = props
+    const options = [
+        { text: "Low To High", value: "asc" },
+        { text: "$0 - $55", value: "0-55" },
+        { text: "$55 - $100", value: "55-100" }
+    ]
+    return <>
+        <div className="shop__product__option">
+            <div className="row">
+                <div className="col-lg-6 col-md-6 col-sm-6">
+                    <div className="shop__product__option__left">
+                        <p>{`Showing ${(showingFilterResult?.currentPage! - 1) * NUMOFITEMPERPAGE + 1}–${showingFilterResult?.numOfItems! + (showingFilterResult?.currentPage! - 1) * NUMOFITEMPERPAGE} of ${showingFilterResult?.totalItems} results`}</p>
+                    </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-6">
+                    <div className="shop__product__option__right">
+                        <p>Sort by Price:</p>
+                        <NiceSelect
+                            options={options}
+                            handleChange={onProductSort} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </>
+}
+
+
+const ProductSection: React.FC<{ productList: Product[] }> = (props) => {
+    const dispatch = useDispatch()
+    const { productList } = props
+
+    const handleAddToCart = useCallback((productId: number) => {
+        dispatch(addToCart({ id: productId, quantity: 1 }));
+    }, [])
+
+
+
+    const handleAddWishlist = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+        console.log("add to wishlist")
+    }
+
+    return (
+        <>
+            <div className="row" >
+                {productList?.map((product: Product) => {
+                    return <div className="col-lg-4 col-md-6 col-sm-6">
+                        <ProductItem
+                            key={"product-" + product.id}
+                            product={product}
+                            handleAddToCart={handleAddToCart}
+                            handleAddWishlist={handleAddWishlist} /></div>
+                })}
+            </div>
+        </>
+    )
 }

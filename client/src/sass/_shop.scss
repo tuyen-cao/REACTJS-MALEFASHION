@@ -305,13 +305,13 @@
     padding-top: 25px;
     text-align: center;
 
-    a {
+    a, li {
         display: inline-block;
         font-size: 16px;
         font-weight: 700;
         color: $heading-color;
         height: 30px;
-        width: 30px;
+        min-width: 30px;
         border: 1px solid transparent;
         border-radius: 50%;
         line-height: 30px;
@@ -324,6 +324,16 @@
         &:hover {
             border-color: $heading-color;
         }
+        .page-link {
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            background: none;
+            color: $heading-color;
+        }
+        &.disabled {
+            display: none;
+        }
     }
 
     span {
@@ -334,4 +344,11 @@
         padding-left: 10px;
         padding-right: 15px;
     }
+
+    .page-link.active, .active > .page-link {
+        background: none;
+        border: none;
+        color: $heading-color;
+    }
+    
 }
