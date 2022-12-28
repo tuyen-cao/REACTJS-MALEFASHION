@@ -9,8 +9,8 @@ import mixitup from 'mixitup';
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorFallback, myErrorHandler } from 'utilities/errorBoundaryUtils'
 import { fetchProduct } from 'services/product.service'
-import { URLPARAMS } from 'constants/product.constant'
 import { Product, ProductHasType, ProductTypes } from 'models/types'
+import { URLPARAMS } from 'constants/api.constant'
 
 const ProductSectionMixitup: React.FC = () => {
     const dispatch = useDispatch()

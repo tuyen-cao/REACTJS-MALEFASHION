@@ -11,24 +11,25 @@ import { ScrollContainer } from "react-nice-scroll"
 import { useQuery } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
-import { fetchProduct } from 'services/product.service'
+import { fetchAllCategoriesIncludeProducts, fetchProduct } from 'services/product.service'
 import { useCallback, useState, useEffect } from 'react';
-import { NUMOFITEMPERPAGE, URLPARAMS } from 'constants/product.constant'
+import { NUMOFITEMPERPAGE } from 'constants/product.constant'
 import ReactPaginate from 'react-paginate';
+import { URLPARAMS } from "constants/api.constant"
+import { ErrorBoundary } from "react-error-boundary"
+import { ErrorFallback, myErrorHandler } from "utilities/errorBoundaryUtils"
 
 
 const Shop: React.FC = () => {
     const [page, setPage] = useState(1)
     const [rangePrice, setRangePrice] = useState("_sort=price&_price=asc")
+    const [category, setCategory] = useState("")
     const { isLoading, data, isError, error, isPreviousData } = useQuery(
-        ['products', { page, rangePrice }],
+        ['products', { page, rangePrice, category }],
         () => fetchProduct(URLPARAMS.PRODUCTFILTER
             .replace('{limit}', NUMOFITEMPERPAGE.toString())
             .replace('{page}', page.toString())
-            .replace('{range}', () => {
-                console.log(rangePrice.toString())
-                return rangePrice.toString()
-            })),
+            .replace('{categoryId}', category.toString())),
         {
             keepPreviousData: true
         }
@@ -40,16 +41,18 @@ const Shop: React.FC = () => {
 
     const handleProductSort = (value: string) => {
         let range = ""
-        console.log(value)
         if (value === "asc") {
             range = `_sort=price&_price=${value}`
         }
         else {
-
             range = "price_gte=" + value.replace("-", "&price_lte=")
         }
         setPage(1)
         setRangePrice(range)
+    }
+
+    const handleSelectCategory = (catId:number) => {
+        setCategory(`categoryId=${catId}`)
     }
     if (isLoading) return <>
         <PagePreloder />
@@ -64,7 +67,7 @@ const Shop: React.FC = () => {
             <section className="shop spad">
                 <div className="container">
                     <div className="row">
-                        <SideBar />
+                        <SideBar handleSelectCategory={handleSelectCategory} />
                         <div className="col-lg-9">
                             <ProductOption showingFilterResult={{
                                 currentPage: page,
@@ -95,11 +98,16 @@ const SideBarSearch: React.FC = () => {
         </div>
     </>
 }
-const SideBarAccordion: React.FC = () => {
+const SideBarAccordion: React.FC<{handleSelectCategory: (catId:number)=>void}> = (props) => {
+    const {handleSelectCategory} = props
     return <>
         <div className="shop__sidebar__accordion">
             <Accordion defaultActiveKey={['0', '1']} alwaysOpen>
-                <CategoriesArccodion />
+                <ErrorBoundary
+                    FallbackComponent={ErrorFallback}
+                    onError={myErrorHandler}>
+                    <CategoriesArccodion handleSelectCategory = {handleSelectCategory} />
+                </ErrorBoundary>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Accordion Item #2</Accordion.Header>
                     <Accordion.Body>
@@ -114,52 +122,6 @@ const SideBarAccordion: React.FC = () => {
                 </Accordion.Item>
             </Accordion>
             {/*<div className="accordion" id="accordionExample">
-                 <div className="card">
-                    <div className="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseOne">
-                            Categories
-                        </a>
-                    </div>
-                    <div
-                        id="collapseOne"
-                        className="collapse show"
-                        data-parent="#accordionExample"
-                    >
-                        <div className="card-body">
-                            <div className="shop__sidebar__categories">
-                                <ul className="nice-scroll">
-                                    <li>
-                                        <a href="#">Men (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Women (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Bags (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Clothing (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Shoes (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Accessories (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Kids (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Kids (20)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Kids (20)</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="card">
                     <div className="card-heading">
                         <a data-toggle="collapse" data-target="#collapseTwo">
@@ -350,59 +312,49 @@ const SideBarAccordion: React.FC = () => {
     </>
 }
 
-const CategoriesArccodion: React.FC = () => {
+const CategoriesArccodion: React.FC<{handleSelectCategory: (catId:number)=>void}> = (props) => {
+    const {handleSelectCategory} = props
+    const { isLoading, data, isError, error } = useQuery(
+        ['Categories'],
+        () => fetchAllCategoriesIncludeProducts()
+    )
+    if (isLoading) return <>
+        <PagePreloder />
+    </>
+    if (isError)
+        return <>Error: {error}</>
     return <>
-        <Accordion.Item className="card" eventKey="0">
-            <Accordion.Header
-                className="card-heading"
-                as={'div'}
-                bsPrefix={' '}>Categories</Accordion.Header>
-            <Accordion.Body bsPrefix={"card-body"}>
-                <div className="shop__sidebar__categories">
-                    <ScrollContainer>
-
-                        <ul className="nice-scroll">
-                            <li>
-                                <a href="#">Men (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Women (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Bags (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Clothing (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Shoes (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Accessories (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Kids (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Kids (20)</a>
-                            </li>
-                            <li>
-                                <a href="#">Kids (20)</a>
-                            </li>
-                        </ul>
-                    </ScrollContainer>
-                </div>
-            </Accordion.Body>
-        </Accordion.Item>
+        {data.data.length > 0 &&
+            <Accordion.Item className="card" eventKey="0">
+                <Accordion.Header
+                    className="card-heading"
+                    as={'div'}
+                    bsPrefix={' '}>Categories</Accordion.Header>
+                <Accordion.Body bsPrefix={"card-body"}>
+                    <div className="shop__sidebar__categories">
+                        <ScrollContainer>
+                            <ul className="nice-scroll">
+                                {data.data.map((cat: any) => {
+                                    return <li key={`cat-${cat.id}`} onClick={()=> {handleSelectCategory(cat.id)}}>
+                                        {cat.name} ({cat.products.length})
+                                    </li>
+                                })}
+                            </ul>
+                        </ScrollContainer>
+                    </div>
+                </Accordion.Body>
+            </Accordion.Item>
+        }
     </>
 }
 
-const SideBar: React.FC = () => {
+const SideBar: React.FC<{handleSelectCategory: (catId:number)=>void}> = (props) => {
+    const {handleSelectCategory} = props
     return <>
         <div className="col-lg-3">
             <div className="shop__sidebar">
                 <SideBarSearch />
-                <SideBarAccordion />
+                <SideBarAccordion handleSelectCategory = {handleSelectCategory} />
             </div>
         </div>
     </>

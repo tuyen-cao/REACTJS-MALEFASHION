@@ -14,18 +14,18 @@
         input {
             width: 100%;
             font-size: 15px;
-            color:$color-13;
+            color: $color-13;
             padding-left: 20px;
             border: 1px solid$color-14;
             height: 42px;
 
             &::placeholder {
-                color:$color-13;
+                color: $color-13;
             }
         }
 
         button {
-            color:$color-13;
+            color: $color-13;
             font-size: 15px;
             border: none;
             background: transparent;
@@ -78,20 +78,20 @@
 .shop__sidebar__categories {
 
     ul {
-        height: 225px;
+        max-height: 225px;
 
         li {
             list-style: none;
+            cursor: pointer;
+            text-transform: capitalize;
 
-            a {
-                color:$color-13;
-                font-size: 15px;
-                line-height: 32px;
-                @include transition(all, .3s);
+            color: $color-13;
+            font-size: 15px;
+            line-height: 32px;
+            @include transition(all, .3s);
 
-                &:hover {
-                    color: $heading-color;
-                }
+            &:hover {
+                color: $heading-color;
             }
         }
     }
@@ -155,7 +155,7 @@
         cursor: pointer;
 
         &.c-1 {
-            background:$color-11;
+            background: $color-11;
         }
 
         &.c-2 {
@@ -163,23 +163,23 @@
         }
 
         &.c-3 {
-            background:$color-22;
+            background: $color-22;
         }
 
         &.c-4 {
-            background:$color-21;
+            background: $color-21;
         }
 
         &.c-5 {
-            background:$color-20;
+            background: $color-20;
         }
 
         &.c-6 {
-            background:$color-19;
+            background: $color-19;
         }
 
         &.c-7 {
-            background:$color-18;
+            background: $color-18;
         }
 
         &.c-8 {
@@ -305,7 +305,8 @@
     padding-top: 25px;
     text-align: center;
 
-    a, li {
+    a,
+    li {
         display: inline-block;
         font-size: 16px;
         font-weight: 700;
@@ -324,6 +325,7 @@
         &:hover {
             border-color: $heading-color;
         }
+
         .page-link {
             padding: 0;
             border-radius: 0;
@@ -331,6 +333,7 @@
             background: none;
             color: $heading-color;
         }
+
         &.disabled {
             display: none;
         }
@@ -345,10 +348,11 @@
         padding-right: 15px;
     }
 
-    .page-link.active, .active > .page-link {
+    .page-link.active,
+    .active>.page-link {
         background: none;
         border: none;
         color: $heading-color;
     }
-    
+
 }

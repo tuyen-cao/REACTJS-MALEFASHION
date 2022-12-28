@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux'
 import { addToCart } from 'reducers/productsReducer'
 import ProductItem from './utilities/ProductItem'
 import { fetchProduct } from 'services/product.service'
-import { useCallback, useState } from 'react';
-import { URLPARAMS } from 'constants/product.constant'
+import { useCallback, useState } from 'react'
 import { Product } from 'models/types'
+import { URLPARAMS } from 'constants/api.constant'
 
 const ProductSection: React.FC = () => {
     const dispatch = useDispatch()
